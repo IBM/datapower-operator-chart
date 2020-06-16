@@ -1,0 +1,14 @@
+# Default values for datapower-operator.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+operator:
+  replicas: 1
+  image:
+    repository: docker.io/ibmcom/datapower-operator
+    tag: latest
+    pullPolicy: Always
+    imagePullSecrets: []
+  installMode: OwnNamespace
+  watchNamespaces: []
+  logLevel: info

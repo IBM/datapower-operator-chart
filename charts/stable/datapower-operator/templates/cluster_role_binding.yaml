@@ -1,0 +1,16 @@
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ template "datapower-operator.namespacedname" . }}
+  labels:
+    app.kubernetes.io/instance: {{ template "datapower-operator.namespacedname" . }}
+    app.kubernetes.io/name: datapower-operator
+    app.kubernetes.io/managed-by: datapower-operator
+subjects:
+- kind: ServiceAccount
+  name: {{ template "datapower-operator.namespacedname" . }}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: ClusterRole
+  name: {{ template "datapower-operator.namespacedname" . }}
+  apiGroup: rbac.authorization.k8s.io

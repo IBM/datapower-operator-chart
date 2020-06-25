@@ -148,3 +148,15 @@ rules:
   - customresourcedefinitions
   verbs:
     - get
+- apiGroups:
+  - cp4i.ibm.com
+  resources:
+  - cp4iservicesbindings
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - patch
+  - update
+  - delete

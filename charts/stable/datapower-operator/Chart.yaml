@@ -2,8 +2,8 @@ apiVersion: v2
 name: datapower-operator
 description: A chart to deploy the DataPowerService Operator
 type: application
-version: 1.0.0
-appVersion: 1.0.0
+version: 1.0.1
+appVersion: 1.0.1
 kubeVersion: '>=1.16.0'
 keywords:
 - amd64
@@ -14,3 +14,4 @@ keywords:
 - RHOCP
 - ROKS
 - IKS
+icon: https://avatars1.githubusercontent.com/u/8836442?v=4&s=200

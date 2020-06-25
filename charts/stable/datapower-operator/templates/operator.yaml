@@ -10,19 +10,21 @@ spec:
   replicas: {{ .Values.operator.replicas }}
   selector:
     matchLabels:
+      name: datapower-operator
       app.kubernetes.io/instance: {{ template "datapower-operator.namespacedname" . }}
       app.kubernetes.io/name: datapower-operator
       app.kubernetes.io/managed-by: datapower-operator
   template:
     metadata:
       labels:
+        name: datapower-operator
         app.kubernetes.io/instance: {{ template "datapower-operator.namespacedname" . }}
         app.kubernetes.io/name: datapower-operator
         app.kubernetes.io/managed-by: datapower-operator
       annotations:
         productID: datapower-operator
         productName: "IBM DataPower Operator"
-        productVersion: 1.0.0
+        productVersion: 1.0.1
     spec:
       affinity:
         nodeAffinity:
@@ -33,7 +35,7 @@ spec:
                 operator: In
                 values: ["amd64"]
       topologySpreadConstraints:
-      - maxSkew: 0
+      - maxSkew: 1
         topologyKey: zone
         whenUnsatisfiable: DoNotSchedule
         labelSelector:

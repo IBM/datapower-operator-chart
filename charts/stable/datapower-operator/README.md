@@ -225,7 +225,6 @@ This value will adjust the verbosity of the logs produced by the Operator. Defau
 |ValidatingWebhookConfigurations|`<namespace>.datapowerservices.validator.datapower.ibm.com`|Operator|
 |Secret (webhook TLS)|`datapower-operator`|Operator|
 
-
 ## Limitations
 
 This chart is able to be installed in development, nonproduction, and production environments.

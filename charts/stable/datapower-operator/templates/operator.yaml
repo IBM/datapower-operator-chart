@@ -24,7 +24,7 @@ spec:
       annotations:
         productID: datapower-operator
         productName: "IBM DataPower Operator"
-        productVersion: 1.0.2
+        productVersion: 1.1.0
     spec:
       affinity:
         nodeAffinity:
@@ -46,13 +46,7 @@ spec:
       hostNetwork: false
       hostPID: false
       hostIPC: false
-      serviceAccountName: {{ template "datapower-operator.namespacedname" . }}
-      {{- if .Values.operator.image.imagePullSecrets }}
-      imagePullSecrets:
-      {{- range .Values.operator.image.imagePullSecrets }}
-      - name: {{ .name }}
-      {{- end }}
-      {{- end }}
+      serviceAccountName: datapower-operator
       containers:
         - name: datapower-operator
           # Replace this with the built image name
@@ -80,9 +74,9 @@ spec:
             - name: NAMESPACED_NAME
               value: {{ template "datapower-operator.namespacedname" . }}
             - name: IBM_ENTITLED_REGISTRY
-              value: "cp.icr.io/cp/datapower"
+              value: {{ .Values.operator.entitledPullRegistry | default "cp.icr.io/cp/datapower" | quote }}
             - name: IBM_DOCKER_HUB
-              value: "docker.io/ibmcom"
+              value: {{ .Values.operator.imagePullRegistry | default "docker.io/ibmcom" | quote }}
           resources:
             requests:
               cpu: "500m"

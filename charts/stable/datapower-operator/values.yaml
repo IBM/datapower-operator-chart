@@ -8,7 +8,7 @@ operator:
     repository: docker.io/ibmcom/datapower-operator
     tag: latest
     pullPolicy: Always
-    imagePullSecrets: []
   installMode: OwnNamespace
   watchNamespaces: []
   logLevel: info
+  imagePullSecrets: []

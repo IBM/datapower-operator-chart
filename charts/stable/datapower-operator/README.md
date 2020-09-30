@@ -153,7 +153,7 @@ kubectl delete crd/datapowerservices.datapower.ibm.com
 |`operator.image.repository`|Repository containing Operator image|`docker.io/ibmcom/datapower-operator`|
 |`operator.image.tag`|Name of Operator image|`latest`|
 |`operator.image.pullPolicy`|Image pull policy for Operator|`Always`|
-|`operator.image.imagePullSecrets`|List of pull secret names|`[]`|
+|`operator.imagePullSecrets`|List of pull secret names|`[]`|
 |`operator.installMode`|InstallMode of the operator|`OwnNamespace`|
 |`operator.watchNamespaces`|Namespaces the Operator should watch|`[]`|
 |`operator.logLevel`|Set logLevel for Operator pod|`info`|
@@ -162,14 +162,13 @@ kubectl delete crd/datapowerservices.datapower.ibm.com
 
 This Operator supports deploying with multiple replicas across multiple zones. When more than one Operator pod is present, a leader will be determined. Only the leader manages DataPower StatefulSets.
 
-#### `operator.image.imagePullSecrets`
+#### `operator.imagePullSecrets`
 
-Optional list of pull secrets if operator image is pulled from a registry which requires authentication. Example syntax:
+Optional list of pull secrets if operator images are pulled from a registry which requires authentication. Example syntax:
 
 ```yaml
 operator:
-  image:
-    imagePullSecrets:
+  imagePullSecrets:
     - name: my-pull-secret
 ```
 

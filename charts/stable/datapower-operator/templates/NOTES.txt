@@ -2,8 +2,11 @@ The DataPower Operator has been deployed!
 
 To verify your install, look for:
 - Operator pod:                     kubectl get pod | grep '{{ template "datapower-operator.fullname" . }}'
-- MutatingWebhookConfigurations:    kubectl get mutatingwebhookconfigurations | grep '{{ .Release.Namespace }}.datapowerservices.defaulter.datapower.ibm.com'
-- ValidatingWebhookConfigurations:  kubectl get validatingwebhookconfigurations | grep '{{ .Release.Namespace }}.datapowerservices.validator.datapower.ibm.com'
+- MutatingWebhookConfigurations:    kubectl get mutatingwebhookconfigurations | grep '{{ .Release.Namespace }}'
+- ValidatingWebhookConfigurations:  kubectl get validatingwebhookconfigurations | grep '{{ .Release.Namespace }}'
 - Cluster Role:                     kubectl get clusterrole | grep '{{ template "datapower-operator.namespacedname" . }}'
 - Cluster Role Binding:             kubectl get clusterrolebinding | grep '{{ template "datapower-operator.namespacedname" . }}'
-- Service Account:                  kubectl get serviceaccount | grep '{{ template "datapower-operator.namespacedname" . }}'
+- Role:                             kubectl get role | grep '{{ template "datapower-operator.namespacedname" . }}'
+- Role Binding:                     kubectl get rolebinding | grep '{{ template "datapower-operator.namespacedname" . }}'
+- Service Account:                  kubectl get serviceaccount | grep 'datapower-operator'
+- Conversion Webhook:               kubectl get deployment --all-namespaces | grep 'datapower-operator-conversion-webhook'

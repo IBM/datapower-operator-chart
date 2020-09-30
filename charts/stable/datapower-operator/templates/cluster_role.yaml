@@ -5,9 +5,12 @@ metadata:
   name: {{ template "datapower-operator.namespacedname" . }}
   labels:
     app.kubernetes.io/instance: {{ template "datapower-operator.namespacedname" . }}
-    app.kubernetes.io/name: datapower-operator
+    app.kubernetes.io/name: {{ template "datapower-operator.namespacedname" . }}
     app.kubernetes.io/managed-by: datapower-operator
 rules:
+
+# meeded for administration of validating and defaulting webhooks
+# for the CRDs which this operator manages
 - apiGroups:
   - admissionregistration.k8s.io
   resources:
@@ -15,6 +18,8 @@ rules:
   - validatingwebhookconfigurations
   verbs:
   - '*'
+
+# needed for reconciliation of the admission controllers
 - apiGroups:
   - rbac.authorization.k8s.io
   resources:
@@ -23,28 +28,33 @@ rules:
   verbs:
   - get
   - list
+
+# needed for management of owned CRDs
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - get
+  - update
+
+# needed for management of conversion webhook deployment, which can
+# exist in other namespaces than this operator
 - apiGroups:
   - ""
   resources:
   - namespaces
   verbs:
   - get
-  - update
-  - watch
-  - patch
   - list
+
+# needed for management of conversion webhook deployment, which can
+# exist in other namespaces than this operator
 - apiGroups:
   - ""
   resources:
-  - pods
   - services
-  - services/finalizers
-  - endpoints
-  - persistentvolumeclaims
-  - events
-  - configmaps
   - secrets
-  - serviceaccounts
   verbs:
   - create
   - delete
@@ -53,13 +63,13 @@ rules:
   - patch
   - update
   - watch
+
+# needed for management of conversion webhook deployment, which can
+# exist in other namespaces than this operator
 - apiGroups:
   - apps
   resources:
   - deployments
-  - daemonsets
-  - replicasets
-  - statefulsets
   verbs:
   - create
   - delete
@@ -68,34 +78,8 @@ rules:
   - patch
   - update
   - watch
-- apiGroups:
-  - monitoring.coreos.com
-  resources:
-  - servicemonitors
-  verbs:
-  - get
-  - create
-- apiGroups:
-  - apps
-  resourceNames:
-  - datapower-operator
-  resources:
-  - deployments/finalizers
-  verbs:
-  - update
-- apiGroups:
-  - ""
-  resources:
-  - pods
-  verbs:
-  - get
-- apiGroups:
-  - apps
-  resources:
-  - replicasets
-  - deployments
-  verbs:
-  - get
+
+# Needed for conversion webhook across namespaces
 - apiGroups:
   - datapower.ibm.com
   resources:
@@ -108,55 +92,3 @@ rules:
   - patch
   - update
   - watch
-- apiGroups:
-  - batch
-  resources:
-  - jobs
-  verbs:
-    - create
-    - delete
-    - get
-    - list
-    - patch
-    - update
-    - watch
-- apiGroups:
-  - rbac.authorization.k8s.io
-  resources:
-  - roles
-  - rolebindings
-  verbs:
-    - create
-    - delete
-    - get
-    - list
-    - patch
-    - update
-    - watch
-- apiGroups:
-  - monitoringcontroller.cloud.ibm.com
-  resources:
-  - monitoringdashboards
-  verbs:
-    - create
-    - get
-    - list
-    - watch
-- apiGroups:
-  - apiextensions.k8s.io
-  resources:
-  - customresourcedefinitions
-  verbs:
-    - get
-- apiGroups:
-  - cp4i.ibm.com
-  resources:
-  - cp4iservicesbindings
-  verbs:
-  - create
-  - get
-  - list
-  - watch
-  - patch
-  - update
-  - delete

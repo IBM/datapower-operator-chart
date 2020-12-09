@@ -22,11 +22,11 @@ spec:
         app.kubernetes.io/name: datapower-operator
         app.kubernetes.io/managed-by: datapower-operator
       annotations:
-        productID: datapower-operator
+        productID: "64a541a8e6d44869ba790cbafb937f7a"
         productName: "IBM DataPower Operator"
         productMetric: "FREE"
         productChargedContainers: ""
-        productVersion: 1.1.1
+        productVersion: 1.2.0
     spec:
       affinity:
         nodeAffinity:

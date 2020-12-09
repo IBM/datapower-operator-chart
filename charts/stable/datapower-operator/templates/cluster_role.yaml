@@ -17,7 +17,13 @@ rules:
   - mutatingwebhookconfigurations
   - validatingwebhookconfigurations
   verbs:
-  - '*'
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
 
 # needed for reconciliation of the admission controllers
 - apiGroups:
@@ -92,3 +98,16 @@ rules:
   - patch
   - update
   - watch
+
+# Needed for OCP platform checks
+- apiGroups:
+  - config.openshift.io
+  resources:
+  - clusterversions
+  verbs:
+  - get
+
+{{- if eq .Values.operator.installMode "AllNamespaces" }}
+# If installMode is AllNamespaces, we should use the cluster role for everything.
+{{ $.Files.Get "static/role_rules.yaml" }}
+{{- end }}

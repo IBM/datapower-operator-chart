@@ -1,0 +1,18 @@
+{{- if eq .Values.operator.installMode "MultiNamespace" }}
+{{ $namespaces := (include "datapower-operator.getMultiNamespaces" .) | split " "  }}
+{{- range $namespaces -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  creationTimestamp: null
+  name: {{ template "datapower-operator.namespacedname" $ }}
+  namespace: {{ . }}
+  labels:
+    app.kubernetes.io/instance: {{ template "datapower-operator.namespacedname" $ }}
+    app.kubernetes.io/name: {{ template "datapower-operator.namespacedname" $ }}
+    app.kubernetes.io/managed-by: datapower-operator
+rules:
+{{ $.Files.Get "static/role_rules.yaml" }}
+---
+{{- end }}
+{{- end }}

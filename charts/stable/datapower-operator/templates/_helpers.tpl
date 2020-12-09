@@ -107,3 +107,46 @@ value: ""
 {{- end -}}
 {{- end -}}
 
+{{/*
+datapower-operator.getMultiNamespacesString
+Produces a string version of the watchNamespaces list
+*/}}
+{{- define "datapower-operator.getMultiNamespacesString" -}}
+{{- range $.Values.operator.watchNamespaces -}}{{ printf "%s " . }}{{ end -}}
+{{- end -}}
+
+{{/*
+datapower-operator.getMultiNamespaces
+Return a whitespace separated list of namespaces for the MultiNamespace installMode
+the Operator should install Roles and RoleBindings into. If the list of watched
+namespaces does not include the installation namespace, it is added into the list
+as the Operator requires a Role in the namespace in which it is installed.
+*/}}
+{{- define "datapower-operator.getMultiNamespaces" -}}
+{{- $containsNamespace := "false" -}}
+{{- range $.Values.operator.watchNamespaces -}}
+{{- if eq . $.Release.Namespace -}}
+{{- $containsNamespace = "true" -}}
+{{- end -}}
+{{- end -}}
+{{- if eq $containsNamespace "false" -}}
+{{ include "datapower-operator.getMultiNamespacesString" . }}{{ $.Release.Namespace -}}
+{{- else -}}
+{{ (include "datapower-operator.getMultiNamespacesString" .) | trimSuffix " " -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+datapower-operator.getSingleNamespaces
+Return a whitelist separated list of namespaces for the SingleNamespace installMode
+the Operator should install Roles and RoleBindings into. If the top watchNamespace
+is not also the installation namespace, this returns a list of the two. Otherwise,
+just the installation namespace is returned.
+*/}}
+{{- define "datapower-operator.getSingleNamespaces" -}}
+{{- if eq (index $.Values.operator.watchNamespaces 0) $.Release.Namespace -}}
+{{- printf "%s" (index $.Values.operator.watchNamespaces 0) -}}
+{{- else -}}
+{{- printf "%s %s" (index $.Values.operator.watchNamespaces 0) $.Release.Namespace -}}
+{{- end -}}
+{{- end -}}

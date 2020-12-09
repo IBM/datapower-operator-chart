@@ -1,0 +1,14 @@
+{{- if eq .Values.operator.installMode "OwnNamespace" }}
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  creationTimestamp: null
+  name: {{ template "datapower-operator.namespacedname" . }}
+  labels:
+    app.kubernetes.io/instance: {{ template "datapower-operator.namespacedname" . }}
+    app.kubernetes.io/name: {{ template "datapower-operator.namespacedname" . }}
+    app.kubernetes.io/managed-by: datapower-operator
+rules:
+{{ $.Files.Get "static/role_rules.yaml" }}
+{{- end }}

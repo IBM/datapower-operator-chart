@@ -1,0 +1,24 @@
+{{ if eq .Values.operator.installMode "SingleNamespace" }}
+{{ $namespaces := (include "datapower-operator.getSingleNamespaces" .) | split " " -}}
+{{ range $namespaces -}}
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  creationTimestamp: null
+  name: {{ template "datapower-operator.namespacedname" $ }}
+  namespace: {{ . }}
+  labels:
+    app.kubernetes.io/instance: {{ template "datapower-operator.namespacedname" $ }}
+    app.kubernetes.io/name: {{ template "datapower-operator.namespacedname" $ }}
+    app.kubernetes.io/managed-by: datapower-operator
+subjects:
+- kind: ServiceAccount
+  name: datapower-operator
+  namespace: {{ $.Release.Namespace }}
+roleRef:
+  kind: Role
+  name: {{ template "datapower-operator.namespacedname" $ }}
+  apiGroup: rbac.authorization.k8s.io
+---
+{{- end -}}
+{{- end -}}

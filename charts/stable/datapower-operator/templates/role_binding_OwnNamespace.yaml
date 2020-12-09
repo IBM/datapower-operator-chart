@@ -1,0 +1,20 @@
+{{ if eq .Values.operator.installMode "OwnNamespace" }}
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  creationTimestamp: null
+  name: {{ template "datapower-operator.namespacedname" . }}
+  labels:
+    app.kubernetes.io/instance: {{ template "datapower-operator.namespacedname" . }}
+    app.kubernetes.io/name: {{ template "datapower-operator.namespacedname" . }}
+    app.kubernetes.io/managed-by: datapower-operator
+subjects:
+- kind: ServiceAccount
+  name: datapower-operator
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: Role
+  name: {{ template "datapower-operator.namespacedname" . }}
+  apiGroup: rbac.authorization.k8s.io
+
+{{- end }}

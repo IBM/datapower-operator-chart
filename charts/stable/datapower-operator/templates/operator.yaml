@@ -26,7 +26,7 @@ spec:
         productName: "IBM DataPower Operator"
         productMetric: "FREE"
         productChargedContainers: ""
-        productVersion: 1.2.0
+        productVersion: 1.2.1
     spec:
       affinity:
         nodeAffinity:
@@ -38,8 +38,8 @@ spec:
                 values: ["amd64"]
       topologySpreadConstraints:
       - maxSkew: 1
-        topologyKey: zone
-        whenUnsatisfiable: DoNotSchedule
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: ScheduleAnyway
         labelSelector:
           matchLabels:
             app.kubernetes.io/instance: {{ template "datapower-operator.namespacedname" . }}

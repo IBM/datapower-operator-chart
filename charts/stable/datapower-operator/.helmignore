@@ -20,3 +20,4 @@
 .idea/
 *.tmproj
 .vscode/
+ibm_cloud_pak/

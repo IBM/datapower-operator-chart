@@ -1,12 +1,12 @@
-# DataPowerService Operator Chart
+# IBM DataPower Operator Chart
 
 ## Introduction
 
-The DataPowerService Operator manages StatefulSets of DataPower Pods following configuration defined in DataPowerService Custom Resources.
+The IBM DataPower Operator manages StatefulSets of DataPower Pods following configuration defined in DataPowerService Custom Resources.
 
 ## Chart Details
 
-This chart deploys a DataPowerService Operator Deployment into a namespace. The DataPowerService CRD will be deployed from this chart if and only if a version of it does not already exist in the cluster.
+This chart deploys a DataPower Operator Deployment into a namespace. The DataPowerService CRD will be deployed from this chart if and only if a version of it does not already exist in the cluster.
 
 ## Prerequisites
 
@@ -136,13 +136,14 @@ To uninstall this chart, issue the following command:
 helm uninstall <name>
 ```
 
-Due to [limitations](https://helm.sh/docs/chart_best_practices/custom_resource_definitions/) in Helm, the `DataPowerService` Custom Resource Definition (CRD) is not deleted when the operator is uninstalled via Helm. To clean up the CRD, issue the following command:
+Due to [limitations](https://helm.sh/docs/chart_best_practices/custom_resource_definitions/) in Helm, the Custom Resource Definitions (CRDs) are not deleted when the operator is uninstalled via Helm. To clean up the CRDs, issue the following commands:
 
 ```
 kubectl delete crd/datapowerservices.datapower.ibm.com
+kubectl delete crd/datapowermonitors.datapower.ibm.com
 ```
 
-**Warning:** Deleting the CRD will cause all Custom Resource (CR) instances to also be deleted.
+**Warning:** Deleting the CRDs will cause all Custom Resource (CR) instances to also be deleted.
 
 ## Configuration
 ### Chart values

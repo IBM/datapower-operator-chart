@@ -77,39 +77,53 @@
   resources:
   - jobs
   verbs:
-    - create
-    - delete
-    - get
-    - list
-    - patch
-    - update
-    - watch
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
 - apiGroups:
   - rbac.authorization.k8s.io
   resources:
   - roles
   - rolebindings
   verbs:
-    - create
-    - delete
-    - get
-    - list
-    - patch
-    - update
-    - watch
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
 - apiGroups:
   - monitoringcontroller.cloud.ibm.com
   resources:
   - monitoringdashboards
   verbs:
-    - create
-    - get
-    - list
-    - watch
+  - create
+  - get
+  - list
+  - watch
 - apiGroups:
   - cp4i.ibm.com
   resources:
   - cp4iservicesbindings
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - patch
+  - update
+  - delete
+- apiGroups:
+  - autoscaling
+  - autoscaling.k8s.io
+  resources:
+  - horizontalpodautoscalers
+  - verticalpodautoscalers
   verbs:
   - create
   - get

@@ -1,7 +1,7 @@
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  creationTimestamp: "2021-01-22T16:45:59Z"
+  creationTimestamp: "2021-03-30T21:20:49Z"
   labels:
     app.kubernetes.io/instance: datapower-operator
     app.kubernetes.io/managed-by: datapower-operator
@@ -1272,7 +1272,7 @@ spec:
       name: v1beta2
       schema:
         openAPIV3Schema:
-          description: 'DataPowerService is the primary API for managing a DataPower StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdqUZ4 License: https://ibm.biz/BdfE2Y'
+          description: 'DataPowerService is the primary API for managing a DataPower StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdqUZ4 License: https://ibm.biz/Bdf2Y5'
           properties:
             apiVersion:
               description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
@@ -1799,7 +1799,7 @@ spec:
                   description: DataPower license
                   properties:
                     accept:
-                      description: The license agreement must be accepted during installation of this product. To view the license for the latest DataPower version, please visit https://ibm.biz/Bdq5dy. To view the license for a specific version or custom image, docker run --rm <image> --show-license.
+                      description: The license agreement must be accepted during installation of this product. To view the license for the latest DataPower version, please visit https://ibm.biz/Bdf2Y5. To view the license for a specific version or custom image, docker run --rm <image> --show-license.
                       type: boolean
                     use:
                       description: The license usage chosen will determine which edition of DataPower is deployed. If running in IBM Cloud Pak for Integration, only the production and nonproduction licenses are available.

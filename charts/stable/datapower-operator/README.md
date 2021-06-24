@@ -64,8 +64,8 @@ spec:
 Custom SecurityContextConstraints definition:
 
 ```yaml
+apiVersion: security.openshift.io/v1
 kind: SecurityContextConstraints
-apiVersion: v1
 metadata:
   name: ibm-datapower-operator-scc
 allowHostDirVolumePlugin: false
@@ -76,7 +76,6 @@ allowHostPorts: false
 allowPrivilegeEscalation: false
 allowPrivilegedContainer: false
 allowedCapabilities: null
-apiVersion: security.openshift.io/v1
 defaultAddCapabilities: null
 groups:
 - system:authenticated
@@ -151,7 +150,7 @@ kubectl delete crd/datapowermonitors.datapower.ibm.com
 |Value|Description|Default|
 |-|-|-|
 |`operator.replicas`|Number of Operator pods to deploy|`1`|
-|`operator.image.repository`|Repository containing Operator image|`docker.io/ibmcom/datapower-operator`|
+|`operator.image.repository`|Repository containing Operator image|`icr.io/cpopen/datapower-operator`|
 |`operator.image.tag`|Name of Operator image|`latest`|
 |`operator.image.pullPolicy`|Image pull policy for Operator|`Always`|
 |`operator.imagePullSecrets`|List of pull secret names|`[]`|

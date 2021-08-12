@@ -109,6 +109,14 @@ rules:
   resourceNames:
   - datapower-root
 
+# Needed for OCP platform checks
+- apiGroups:
+  - config.openshift.io
+  resources:
+  - clusterversions
+  verbs:
+  - get
+
 # Needed for Cp4iServicesBinding CP4I watched namespaces
 - apiGroups:
     - operators.coreos.com

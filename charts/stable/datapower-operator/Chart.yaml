@@ -2,8 +2,8 @@ apiVersion: v2
 name: datapower-operator
 description: A chart to deploy the IBM DataPower Operator
 type: application
-version: 1.4.1
-appVersion: 1.4.1
+version: 1.4.2
+appVersion: 1.4.2
 kubeVersion: '>=1.19.0'
 keywords:
 - amd64

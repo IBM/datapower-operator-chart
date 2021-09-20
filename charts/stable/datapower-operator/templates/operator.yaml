@@ -26,7 +26,7 @@ spec:
         productName: "IBM DataPower Operator"
         productMetric: "FREE"
         productChargedContainers: ""
-        productVersion: 1.4.1
+        productVersion: 1.4.2
     spec:
       affinity:
         nodeAffinity:
@@ -77,10 +77,10 @@ spec:
               value: {{ template "datapower-operator.namespacedname" . }}
             - name: IBM_ENTITLED_REGISTRY
               value: {{ .Values.operator.entitledPullRegistry | default "cp.icr.io/cp/datapower" | quote }}
-            - name: IBM_DOCKER_HUB
-              value: {{ .Values.operator.imagePullRegistry | default "docker.io/ibmcom" | quote }}
-            - name: IBM_PUBLIC_REGISTRY
-              value: {{ .Values.operator.imagePullRegistry | default "icr.io/cpopen" | quote }}
+            - name: IBM_FREE_REGISTRY_DATAPOWER
+              value: {{ .Values.operator.freeDataPowerRegistry | default "icr.io/integration/datapower" | quote }}
+            - name: IBM_FREE_REGISTRY_CPOPEN
+              value: {{ .Values.operator.freeCpOpenRegistry | default "icr.io/cpopen" | quote }}
           resources:
             requests:
               cpu: "500m"

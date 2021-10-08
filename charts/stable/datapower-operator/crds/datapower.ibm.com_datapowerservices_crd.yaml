@@ -1,7 +1,7 @@
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  creationTimestamp: "2021-08-09T18:59:24Z"
+  creationTimestamp: "2021-10-04T20:43:13Z"
   labels:
     app.kubernetes.io/instance: datapower-operator
     app.kubernetes.io/managed-by: datapower-operator
@@ -3194,6 +3194,8 @@ spec:
                         - L-RJON-BZKJKR
                         - L-RJON-C44J3Y
                         - L-RJON-C44HXD
+                        - L-RJON-C6UNTE
+                        - L-RJON-C6UNQ4
                         - L-RJON-BYDR3Q
                         - L-RJON-BYDQZF
                         - L-RJON-C2XKPU

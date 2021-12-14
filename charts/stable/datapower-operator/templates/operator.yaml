@@ -26,14 +26,14 @@ spec:
         productName: "IBM DataPower Operator"
         productMetric: "FREE"
         productChargedContainers: ""
-        productVersion: 1.3.0
+        productVersion: 1.5.0
     spec:
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: "beta.kubernetes.io/arch"
+              - key: "kubernetes.io/arch"
                 operator: In
                 values: ["amd64"]
       topologySpreadConstraints:
@@ -54,11 +54,11 @@ spec:
           # Replace this with the built image name
           image: {{ .Values.operator.image.repository }}:{{ .Values.operator.image.tag }}
           command:
-          - datapower-operator
+          - /datapower-operator
           args:
+          - "--enable-leader-election"
           - "--zap-encoder=json"
-          - "--zap-level={{ .Values.operator.logLevel }}"
-          - "--zap-time-encoding=iso8601"
+          - "--zap-log-level={{ .Values.operator.logLevel }}"
           imagePullPolicy: {{ .Values.operator.image.pullPolicy }}
           env:
             - name: WATCH_NAMESPACE
@@ -77,8 +77,10 @@ spec:
               value: {{ template "datapower-operator.namespacedname" . }}
             - name: IBM_ENTITLED_REGISTRY
               value: {{ .Values.operator.entitledPullRegistry | default "cp.icr.io/cp/datapower" | quote }}
-            - name: IBM_DOCKER_HUB
-              value: {{ .Values.operator.imagePullRegistry | default "docker.io/ibmcom" | quote }}
+            - name: IBM_FREE_REGISTRY_DATAPOWER
+              value: {{ .Values.operator.freeDataPowerRegistry | default "icr.io/integration/datapower" | quote }}
+            - name: IBM_FREE_REGISTRY_CPOPEN
+              value: {{ .Values.operator.freeCpOpenRegistry | default "icr.io/cpopen" | quote }}
           resources:
             requests:
               cpu: "500m"

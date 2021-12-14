@@ -1,25 +1,100 @@
 - apiGroups:
   - ""
   resources:
+  - configmaps
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - endpoints
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
   - namespaces
   verbs:
   - get
+  - list
+  - patch
   - update
   - watch
-  - patch
+- apiGroups:
+  - ""
+  resources:
+  - persistentvolumeclaims
+  verbs:
+  - create
+  - delete
+  - get
   - list
+  - patch
+  - update
+  - watch
 - apiGroups:
   - ""
   resources:
   - pods
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
   - pods/exec
-  - services
-  - services/finalizers
-  - endpoints
-  - persistentvolumeclaims
-  - events
-  - configmaps
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
   - secrets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
   - serviceaccounts
   verbs:
   - create
@@ -30,11 +105,76 @@
   - update
   - watch
 - apiGroups:
+  - ""
+  resources:
+  - services
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - services/finalizers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps
+  resources:
+  - daemonsets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
   - apps
   resources:
   - deployments
-  - daemonsets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps
+  resourceNames:
+  - datapower-operator
+  resources:
+  - deployments/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - apps
+  resources:
   - replicasets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps
+  resources:
   - statefulsets
   verbs:
   - create
@@ -45,33 +185,53 @@
   - update
   - watch
 - apiGroups:
-  - monitoring.coreos.com
+  - autoscaling
   resources:
-  - servicemonitors
+  - horizontalpodautoscalers
   verbs:
-  - get
   - create
-- apiGroups:
-  - apps
-  resourceNames:
-  - datapower-operator
-  resources:
-  - deployments/finalizers
-  verbs:
+  - delete
+  - get
+  - list
+  - patch
   - update
+  - watch
 - apiGroups:
-  - ""
+  - autoscaling
   resources:
-  - pods
+  - verticalpodautoscalers
   verbs:
+  - create
+  - delete
   - get
+  - list
+  - patch
+  - update
+  - watch
 - apiGroups:
-  - apps
+  - autoscaling.k8s.io
   resources:
-  - replicasets
-  - deployments
+  - horizontalpodautoscalers
   verbs:
+  - create
+  - delete
   - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - autoscaling.k8s.io
+  resources:
+  - verticalpodautoscalers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
 - apiGroups:
   - batch
   resources:
@@ -85,10 +245,10 @@
   - update
   - watch
 - apiGroups:
-  - rbac.authorization.k8s.io
+  - cert-manager.io
   resources:
-  - roles
-  - rolebindings
+  - certificates
+  - issuers
   verbs:
   - create
   - delete
@@ -97,6 +257,25 @@
   - patch
   - update
   - watch
+- apiGroups:
+  - cp4i.ibm.com
+  resources:
+  - cp4iservicesbindings
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - monitoring.coreos.com
+  resources:
+  - servicemonitors
+  verbs:
+  - create
+  - get
 - apiGroups:
   - monitoringcontroller.cloud.ibm.com
   resources:
@@ -107,28 +286,27 @@
   - list
   - watch
 - apiGroups:
-  - cp4i.ibm.com
+  - networking.k8s.io
   resources:
-  - cp4iservicesbindings
+  - networkpolicies
   verbs:
   - create
+  - delete
   - get
   - list
-  - watch
   - patch
   - update
-  - delete
+  - watch
 - apiGroups:
-  - autoscaling
-  - autoscaling.k8s.io
+  - rbac.authorization.k8s.io
   resources:
-  - horizontalpodautoscalers
-  - verticalpodautoscalers
+  - rolebindings
+  - roles
   verbs:
   - create
+  - delete
   - get
   - list
-  - watch
   - patch
   - update
-  - delete
+  - watch

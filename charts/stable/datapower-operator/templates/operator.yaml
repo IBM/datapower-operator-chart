@@ -26,14 +26,14 @@ spec:
         productName: "IBM DataPower Operator"
         productMetric: "FREE"
         productChargedContainers: ""
-        productVersion: 1.2.6
+        productVersion: 1.2.7
     spec:
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: "beta.kubernetes.io/arch"
+              - key: "kubernetes.io/arch"
                 operator: In
                 values: ["amd64"]
       topologySpreadConstraints:

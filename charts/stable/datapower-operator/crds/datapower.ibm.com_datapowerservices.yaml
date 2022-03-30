@@ -3201,12 +3201,16 @@ spec:
                     - L-RJON-C6UNQ4
                     - L-RJON-CAVQAU
                     - L-RJON-CAVQ9E
+                    - L-RJON-CCCPAN
+                    - L-RJON-CCCP8R
                     - L-RJON-BYDR3Q
                     - L-RJON-BYDQZF
                     - L-RJON-C2XKPU
                     - L-RJON-C2XKM5
                     - L-RJON-C5SF54
                     - L-RJON-C5SF7N
+                    - L-RJON-CCCP46
+                    - L-RJON-CCCNZX
                     type: string
                   use:
                     description: The license usage chosen will determine which edition of DataPower is deployed. If running in IBM Cloud Pak for Integration, only the production and nonproduction licenses are available.

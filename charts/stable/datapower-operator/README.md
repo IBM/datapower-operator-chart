@@ -140,6 +140,8 @@ Due to [limitations](https://helm.sh/docs/chart_best_practices/custom_resource_d
 ```
 kubectl delete crd/datapowerservices.datapower.ibm.com
 kubectl delete crd/datapowermonitors.datapower.ibm.com
+kubectl delete crd/datapowerservicebindings.datapower.ibm.com
+kubectl delete crd/datapowerrollouts.datapower.ibm.com
 ```
 
 **Warning:** Deleting the CRDs will cause all Custom Resource (CR) instances to also be deleted.

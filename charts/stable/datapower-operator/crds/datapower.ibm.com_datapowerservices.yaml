@@ -1165,22 +1165,43 @@ spec:
               conditions:
                 description: Conditions represent the latest available observations of the DataPowerService's state
                 items:
-                  description: "Condition represents an observation of an object's state. Conditions are an extension mechanism intended to be used when the details of an observation are not a priori known or would not apply to all instances of a given Kind. \n Conditions should be added to explicitly convey properties that users and components care about rather than requiring those properties to be inferred from other observations. Once defined, the meaning of a Condition can not be changed arbitrarily - it becomes part of the API, and has the same backwards- and forwards-compatibility concerns of any other part of the API."
+                  description: "Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct{     // Represents the observations of a foo's current state.     // Known .status.conditions.type are: \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type     // +patchStrategy=merge     // +listType=map     // +listMapKey=type     Conditions []metav1.Condition `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"` \n     // other fields }"
                   properties:
                     lastTransitionTime:
+                      description: lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
                       format: date-time
                       type: string
                     message:
+                      description: message is a human readable message indicating details about the transition. This may be an empty string.
+                      maxLength: 32768
                       type: string
+                    observedGeneration:
+                      description: observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
                     reason:
-                      description: ConditionReason is intended to be a one-word, CamelCase representation of the category of cause of the current status. It is intended to be used in concise output, such as one-line kubectl get output, and in summarizing occurrences of causes.
+                      description: reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
                       type: string
                     status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
                       type: string
                     type:
-                      description: "ConditionType is the type of the condition and is typically a CamelCased word or short phrase. \n Condition types should indicate state in the \"abnormal-true\" polarity. For example, if the condition indicates when a policy is invalid, the \"is valid\" case is probably the norm, so the condition should be called \"Invalid\"."
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
                       type: string
                   required:
+                  - lastTransitionTime
+                  - message
+                  - reason
                   - status
                   - type
                   type: object
@@ -2416,22 +2437,43 @@ spec:
               conditions:
                 description: Conditions represent the latest available observations of the DataPowerService's state
                 items:
-                  description: "Condition represents an observation of an object's state. Conditions are an extension mechanism intended to be used when the details of an observation are not a priori known or would not apply to all instances of a given Kind. \n Conditions should be added to explicitly convey properties that users and components care about rather than requiring those properties to be inferred from other observations. Once defined, the meaning of a Condition can not be changed arbitrarily - it becomes part of the API, and has the same backwards- and forwards-compatibility concerns of any other part of the API."
+                  description: "Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct{     // Represents the observations of a foo's current state.     // Known .status.conditions.type are: \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type     // +patchStrategy=merge     // +listType=map     // +listMapKey=type     Conditions []metav1.Condition `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"` \n     // other fields }"
                   properties:
                     lastTransitionTime:
+                      description: lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
                       format: date-time
                       type: string
                     message:
+                      description: message is a human readable message indicating details about the transition. This may be an empty string.
+                      maxLength: 32768
                       type: string
+                    observedGeneration:
+                      description: observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
                     reason:
-                      description: ConditionReason is intended to be a one-word, CamelCase representation of the category of cause of the current status. It is intended to be used in concise output, such as one-line kubectl get output, and in summarizing occurrences of causes.
+                      description: reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
                       type: string
                     status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
                       type: string
                     type:
-                      description: "ConditionType is the type of the condition and is typically a CamelCased word or short phrase. \n Condition types should indicate state in the \"abnormal-true\" polarity. For example, if the condition indicates when a policy is invalid, the \"is valid\" case is probably the norm, so the condition should be called \"Invalid\"."
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
                       type: string
                   required:
+                  - lastTransitionTime
+                  - message
+                  - reason
                   - status
                   - type
                   type: object
@@ -2903,6 +2945,13 @@ spec:
                   type: string
                 description: Specify custom annotations to add to the DataPower Pods
                 type: object
+              createServiceBinding:
+                description: CreateServiceBinding defines when the DataPowerService controller should generate DataPowerServiceBinding resources.
+                enum:
+                - automatic
+                - always
+                - never
+                type: string
               debug:
                 description: Debug switch. Use this to obtain debug information from DataPower pod initialization.
                 type: boolean
@@ -3128,6 +3177,12 @@ spec:
                   jaegerCollectorEndpoint:
                     description: Endpoint URL for an external Jaeger Collector
                     type: string
+                  propagationFormat:
+                    description: 'Use either the Jaeger native propagation format or the W3C Trace-Context propagation format. See https://www.jaegertracing.io/docs/1.31/client-libraries/#propagation-format and https://github.com/w3c/distributed-tracing Default: jaeger'
+                    enum:
+                    - jaeger
+                    - w3c
+                    type: string
                   samplingRate:
                     description: Sampling rate for Jaeger Client, based on sampling type. See https://www.jaegertracing.io/docs/1.22/sampling/#client-sampling-configuration
                     type: string
@@ -3183,6 +3238,12 @@ spec:
                   license:
                     description: 'Choose the license ID which matches the desired DataPower firmware version and usage. For more information: https://ibm.biz/Bdf467'
                     enum:
+                    - L-RJON-CCAT5F
+                    - L-RJON-CCAT6P
+                    - L-RJON-CCCPAN
+                    - L-RJON-CCCP8R
+                    - L-RJON-CCCP46
+                    - L-RJON-CCCNZX
                     - L-RJON-BMJ4ED
                     - L-RJON-BPCPNS
                     - L-RJON-BSCMKP
@@ -3201,16 +3262,12 @@ spec:
                     - L-RJON-C6UNQ4
                     - L-RJON-CAVQAU
                     - L-RJON-CAVQ9E
-                    - L-RJON-CCCPAN
-                    - L-RJON-CCCP8R
                     - L-RJON-BYDR3Q
                     - L-RJON-BYDQZF
                     - L-RJON-C2XKPU
                     - L-RJON-C2XKM5
                     - L-RJON-C5SF54
                     - L-RJON-C5SF7N
-                    - L-RJON-CCCP46
-                    - L-RJON-CCCNZX
                     type: string
                   use:
                     description: The license usage chosen will determine which edition of DataPower is deployed. If running in IBM Cloud Pak for Integration, only the production and nonproduction licenses are available.
@@ -3811,6 +3868,10 @@ spec:
                   - type
                   type: object
                 type: array
+              terminationGracePeriodSeconds:
+                description: Specify time provided to pods to gracefully shutdown prior to being terminated.
+                format: int64
+                type: integer
               tolerations:
                 description: Toleration settings for scheduling DataPower Pods
                 items:
@@ -3834,6 +3895,28 @@ spec:
                       type: string
                   type: object
                 type: array
+              updateStrategy:
+                description: Defines the strategy for updating the managed StatefulSet of DataPower pods.
+                properties:
+                  mode:
+                    description: Mode defines the management mode for phased rollouts. When set to 'manual' you must set and update the partition manually. When set to 'automatic' the operator will manage the partition automatically.
+                    enum:
+                    - manual
+                    - automatic
+                    type: string
+                  partition:
+                    description: Partition indicates the ordinal at which the StatefulSet should be partitioned. Required when Mode is set to manual.
+                    format: int32
+                    minimum: 0
+                    type: integer
+                  rolloutHistoryLimit:
+                    description: 'Rollout history limit defines the maximum number of DataPowerRollout custom resources to preserve as history of previous rollouts. Once this number is met, when a new rollout resource needs to be created the oldest rollout resource will be deleted. If set to 0 then there is no limit, and no automatic cleanup of rollout resources will be performed. This field is only relevant when Mode is set to ''automatic'' and is ignored otherwise. Default: 10.'
+                    format: int32
+                    minimum: 0
+                    type: integer
+                required:
+                - mode
+                type: object
               users:
                 description: List of DataPower Users
                 items:
@@ -3876,22 +3959,43 @@ spec:
               conditions:
                 description: Conditions represent the latest available observations of the DataPowerService's state
                 items:
-                  description: "Condition represents an observation of an object's state. Conditions are an extension mechanism intended to be used when the details of an observation are not a priori known or would not apply to all instances of a given Kind. \n Conditions should be added to explicitly convey properties that users and components care about rather than requiring those properties to be inferred from other observations. Once defined, the meaning of a Condition can not be changed arbitrarily - it becomes part of the API, and has the same backwards- and forwards-compatibility concerns of any other part of the API."
+                  description: "Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct{     // Represents the observations of a foo's current state.     // Known .status.conditions.type are: \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type     // +patchStrategy=merge     // +listType=map     // +listMapKey=type     Conditions []metav1.Condition `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"` \n     // other fields }"
                   properties:
                     lastTransitionTime:
+                      description: lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
                       format: date-time
                       type: string
                     message:
+                      description: message is a human readable message indicating details about the transition. This may be an empty string.
+                      maxLength: 32768
                       type: string
+                    observedGeneration:
+                      description: observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
                     reason:
-                      description: ConditionReason is intended to be a one-word, CamelCase representation of the category of cause of the current status. It is intended to be used in concise output, such as one-line kubectl get output, and in summarizing occurrences of causes.
+                      description: reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
                       type: string
                     status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
                       type: string
                     type:
-                      description: "ConditionType is the type of the condition and is typically a CamelCased word or short phrase. \n Condition types should indicate state in the \"abnormal-true\" polarity. For example, if the condition indicates when a policy is invalid, the \"is valid\" case is probably the norm, so the condition should be called \"Invalid\"."
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
                       type: string
                   required:
+                  - lastTransitionTime
+                  - message
+                  - reason
                   - status
                   - type
                   type: object
@@ -3935,6 +4039,18 @@ spec:
                 description: Replica count set by auto scaling (when enabled)
                 format: int32
                 type: integer
+              rolloutHistory:
+                description: Rollout history provides a historical record of DataPowerRollout resources associated with this DataPowerService instance.
+                properties:
+                  current:
+                    description: Current is the name of the current DataPowerRollout instance associated with this DataPowerService instance.
+                    type: string
+                  previous:
+                    description: Previous is a list of previous DataPowerRollout instances associated with this DataPowerService instance. The maximum length of this list is defined by the DataPowerService's spec.updateStrategy.rolloutHistoryLimit.
+                    items:
+                      type: string
+                    type: array
+                type: object
               versions:
                 description: Reconciled and available versions
                 properties:

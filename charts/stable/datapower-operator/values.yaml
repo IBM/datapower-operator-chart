@@ -6,7 +6,7 @@ operator:
   replicas: 1
   image:
     repository: icr.io/cpopen/datapower-operator
-    tag: latest
+    tag: 1.6.0
     pullPolicy: Always
   installMode: OwnNamespace
   watchNamespaces: []

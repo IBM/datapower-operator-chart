@@ -90,6 +90,12 @@ rules:
   - update
   - watch
 - apiGroups:
+  - config.openshift.io
+  resources:
+  - clusterversions
+  verbs:
+  - get
+- apiGroups:
   - datapower.ibm.com
   resources:
   - datapowermonitors
@@ -105,6 +111,46 @@ rules:
   - datapower.ibm.com
   resources:
   - datapowermonitors/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowerrollouts
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowerrollouts/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowerservicebindings
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowerservicebindings/status
   verbs:
   - get
   - patch

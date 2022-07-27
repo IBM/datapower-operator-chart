@@ -32,6 +32,7 @@ rules:
   - clusterroles
   - clusterrolebindings
   verbs:
+  - create
   - get
   - list
 
@@ -62,6 +63,23 @@ rules:
   resources:
   - services
   - secrets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+
+# needed for management of conversion webhook deployment, which can
+# exist in other namespaces than this operator
+- apiGroups:
+  - ""
+  resourceNames:
+  - dpop-conv-webhook
+  resources:
+  - serviceaccounts
   verbs:
   - create
   - delete

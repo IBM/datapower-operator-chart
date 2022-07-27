@@ -59,7 +59,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: 'DataPowerService is the primary API for managing a DataPower StatefulSet. API version: v1beta1 Documentation: https://ibm.biz/BdqUZX License: https://ibm.biz/BdfVxG'
+        description: 'DataPowerService is the primary API for managing a DataPower StatefulSet. API version: v1beta1 Documentation: https://ibm.biz/BdPsJS License: https://ibm.biz/BdPdJa'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
@@ -1296,7 +1296,7 @@ spec:
     name: v1beta2
     schema:
       openAPIV3Schema:
-        description: 'DataPowerService is the primary API for managing a DataPower StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdqUZ4 License: https://ibm.biz/BdfVxG'
+        description: 'DataPowerService is the primary API for managing a DataPower StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdPsJv License: https://ibm.biz/BdPdJa'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
@@ -1823,7 +1823,7 @@ spec:
                 description: DataPower license
                 properties:
                   accept:
-                    description: The license agreement must be accepted during installation of this product. To view the license for the latest DataPower version, please visit https://ibm.biz/BdfVxG. To view the license for a specific version or custom image, docker run --rm <image> --show-license.
+                    description: The license agreement must be accepted during installation of this product. To view the license for the latest DataPower version, please visit https://ibm.biz/BdPdJa. To view the license for a specific version or custom image, docker run --rm <image> --show-license.
                     type: boolean
                   use:
                     description: The license usage chosen will determine which edition of DataPower is deployed. If running in IBM Cloud Pak for Integration, only the production and nonproduction licenses are available.
@@ -2586,7 +2586,7 @@ spec:
     name: v1beta3
     schema:
       openAPIV3Schema:
-        description: 'DataPowerService is the primary API for managing a DataPower StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/BdfZjP License: https://ibm.biz/BdfVxG'
+        description: 'DataPowerService is the primary API for managing a DataPower StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/BdPsJ7 License: https://ibm.biz/BdPdJa'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
@@ -3233,10 +3233,10 @@ spec:
                 description: DataPower license
                 properties:
                   accept:
-                    description: The license agreement must be accepted during installation of this product. To view the license for the latest DataPower version, please visit https://ibm.biz/BdfVxG. To view the license for a specific version or custom image, docker run --rm <image> --show-license.
+                    description: The license agreement must be accepted during installation of this product. To view the license for the latest DataPower version, please visit https://ibm.biz/BdPdJa. To view the license for a specific version or custom image, docker run --rm <image> --show-license.
                     type: boolean
                   license:
-                    description: 'Choose the license ID which matches the desired DataPower firmware version and usage. For more information: https://ibm.biz/Bdf467'
+                    description: 'Choose the license ID which matches the desired DataPower firmware version and usage. For more information: https://ibm.biz/BdPsJ5'
                     enum:
                     - L-RJON-CCAT5F
                     - L-RJON-CCAT6P
@@ -3628,7 +3628,7 @@ spec:
                 - odTracingRegistrationHostname
                 type: object
               podAutoScaling:
-                description: Enable pod auto scaling to ensure high availability of DataPower Pods. To learn more about automatic scaling of DataPower Pods, please view https://ibm.biz/Bdf498
+                description: Enable pod auto scaling to ensure high availability of DataPower Pods. To learn more about automatic scaling of DataPower Pods, please view https://ibm.biz/BdPsJ6
                 properties:
                   hpa:
                     description: Settings used by horizontal pod auto scaler
@@ -3944,7 +3944,7 @@ spec:
                   type: object
                 type: array
               version:
-                description: Can refer to specific version, i.e. 10.0.4.0, or a channel, i.e. 10.0-cd
+                description: Can refer to specific version, i.e. 10.5.0.0, or a channel, i.e. 10.5-lts
                 minLength: 1
                 type: string
             required:

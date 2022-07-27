@@ -36,6 +36,20 @@ rules:
   - watch
 - apiGroups:
   - ""
+  resourceNames:
+  - dpop-conv-webhook
+  resources:
+  - serviceaccounts
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
   resources:
   - services
   verbs:
@@ -188,8 +202,10 @@ rules:
   - clusterrolebindings
   - clusterroles
   verbs:
+  - create
   - get
   - list
+  - update
 - apiGroups:
   - security.openshift.io
   resourceNames:

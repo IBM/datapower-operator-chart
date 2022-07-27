@@ -48,7 +48,7 @@ spec:
     name: v1beta2
     schema:
       openAPIV3Schema:
-        description: 'DataPowerMonitor provides an API for monitoring the DataPower StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdqUZr License: https://ibm.biz/BdfVxG'
+        description: 'DataPowerMonitor provides an API for monitoring the DataPower StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdPsJm License: https://ibm.biz/BdPdJa'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'

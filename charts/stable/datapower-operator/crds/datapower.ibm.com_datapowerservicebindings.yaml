@@ -2,7 +2,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.3.0
+    controller-gen.kubebuilder.io/version: v0.9.0
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -28,40 +28,53 @@ spec:
   - name: v1beta1
     schema:
       openAPIV3Schema:
-        description: DataPowerServiceBinding is an internal API used for service binding with other operators. This product is not deployable standalone and it is part of the LICCR already accepted.
+        description: DataPowerServiceBinding is an internal API used for service binding
+          with other operators. This product is not deployable standalone and it is
+          part of the LICCR already accepted.
         properties:
           apiVersion:
-            description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
             type: string
           kind:
-            description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
             type: string
           metadata:
             type: object
           spec:
-            description: DataPowerServiceBindingSpec defines the desired state of DataPowerServiceBinding
+            description: DataPowerServiceBindingSpec defines the desired state of
+              DataPowerServiceBinding
             type: object
           status:
-            description: DataPowerServiceBindingStatus defines the observed state of DataPowerServiceBinding
+            description: DataPowerServiceBindingStatus defines the observed state
+              of DataPowerServiceBinding
             properties:
               adminSecretName:
-                description: AdminSecretName is the name of the Secret which holds the admin user password for the bound DataPowerService.
+                description: AdminSecretName is the name of the Secret which holds
+                  the admin user password for the bound DataPowerService.
                 minLength: 1
                 type: string
               headlessService:
-                description: HeadlessService is the name of the headless Service for the DataPower StatefulSet, used for Pod discovery.
+                description: HeadlessService is the name of the headless Service for
+                  the DataPower StatefulSet, used for Pod discovery.
                 minLength: 1
                 type: string
               operandVersion:
-                description: OperandVersion is the version of the DataPowerService operand.
+                description: OperandVersion is the version of the DataPowerService
+                  operand.
                 minLength: 1
                 type: string
               operatorVersion:
-                description: OperatorVersion is the version of the DataPower Operator reconciling this binding resource.
+                description: OperatorVersion is the version of the DataPower Operator
+                  reconciling this binding resource.
                 minLength: 1
                 type: string
               restMgmtPort:
-                description: RESTMgmtPort is the port used by the rest-mgmt service within the DataPower pods.
+                description: RESTMgmtPort is the port used by the rest-mgmt service
+                  within the DataPower pods.
                 format: int32
                 minimum: 1
                 type: integer
@@ -75,5 +88,5 @@ status:
   acceptedNames:
     kind: ""
     plural: ""
-  conditions: []
-  storedVersions: []
+  conditions: null
+  storedVersions: null

@@ -26,7 +26,7 @@ spec:
         productName: "IBM DataPower Operator"
         productMetric: "FREE"
         productChargedContainers: ""
-        productVersion: 1.6.2
+        productVersion: 1.6.3
     spec:
       affinity:
         nodeAffinity:
@@ -56,7 +56,7 @@ spec:
           command:
           - /datapower-operator
           args:
-          - "--enable-leader-election"
+          - "--leader-elect"
           - "--zap-encoder=json"
           - "--zap-log-level={{ .Values.operator.logLevel }}"
           imagePullPolicy: {{ .Values.operator.image.pullPolicy }}

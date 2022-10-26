@@ -26,7 +26,7 @@ spec:
         productName: "IBM DataPower Operator"
         productMetric: "FREE"
         productChargedContainers: ""
-        productVersion: 1.2.12
+        productVersion: 1.2.13
     spec:
       affinity:
         nodeAffinity:
@@ -78,7 +78,7 @@ spec:
             - name: IBM_ENTITLED_REGISTRY
               value: {{ .Values.operator.entitledPullRegistry | default "cp.icr.io/cp/datapower" | quote }}
             - name: IBM_FREE_REGISTRY_DATAPOWER
-              value: {{ .Values.operator.freeDataPowerRegistry | default "icr.io/integration/datapower" | quote }}
+              value: {{ .Values.operator.freeDataPowerRegistry | default "icr.io/cpopen/datapower" | quote }}
             - name: IBM_FREE_REGISTRY_CPOPEN
               value: {{ .Values.operator.freeCpOpenRegistry | default "icr.io/cpopen" | quote }}
           resources:

@@ -60,8 +60,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
-          StatefulSet. API version: v1beta1 Documentation: https://ibm.biz/BdPsJS License:
-          https://ibm.biz/BdPdJa'
+          StatefulSet. API version: v1beta1 Documentation: https://ibm.biz/BdPsJS
+          License: https://ibm.biz/BdPdJa'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -2021,8 +2021,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
-          StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdPsJv License:
-          https://ibm.biz/BdPdJa'
+          StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdPsJv
+          License: https://ibm.biz/BdPdJa'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -4080,8 +4080,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
-          StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/BdPsJ7 License:
-          https://ibm.biz/BdPdJa'
+          StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/BdPsJ7
+          License: https://ibm.biz/BdPdJa'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation

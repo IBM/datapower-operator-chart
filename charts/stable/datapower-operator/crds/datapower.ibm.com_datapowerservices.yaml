@@ -2,7 +2,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.9.0
+    controller-gen.kubebuilder.io/version: v0.9.2
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -60,8 +60,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
-          StatefulSet. API version: v1beta1 Documentation: https://ibm.biz/BdPsJS
-          License: https://ibm.biz/BdPdJa'
+          StatefulSet. API version: v1beta1 Documentation: https://ibm.biz/BdPsJS License:
+          https://ibm.biz/BdPdJa'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -181,6 +181,7 @@ spec:
                                     type: object
                                   type: array
                               type: object
+                              x-kubernetes-map-type: atomic
                             weight:
                               description: Weight associated with matching the corresponding
                                 nodeSelectorTerm, in the range 1-100.
@@ -281,10 +282,12 @@ spec:
                                     type: object
                                   type: array
                               type: object
+                              x-kubernetes-map-type: atomic
                             type: array
                         required:
                         - nodeSelectorTerms
                         type: object
+                        x-kubernetes-map-type: atomic
                     type: object
                   podAffinity:
                     description: Describes pod affinity scheduling rules (e.g. co-locate
@@ -361,6 +364,7 @@ spec:
                                         The requirements are ANDed.
                                       type: object
                                   type: object
+                                  x-kubernetes-map-type: atomic
                                 namespaceSelector:
                                   description: A label query over the set of namespaces
                                     that the term applies to. The term is applied
@@ -417,6 +421,7 @@ spec:
                                         The requirements are ANDed.
                                       type: object
                                   type: object
+                                  x-kubernetes-map-type: atomic
                                 namespaces:
                                   description: namespaces specifies a static list
                                     of namespace names that the term applies to. The
@@ -515,6 +520,7 @@ spec:
                                     requirements are ANDed.
                                   type: object
                               type: object
+                              x-kubernetes-map-type: atomic
                             namespaceSelector:
                               description: A label query over the set of namespaces
                                 that the term applies to. The term is applied to the
@@ -566,6 +572,7 @@ spec:
                                     requirements are ANDed.
                                   type: object
                               type: object
+                              x-kubernetes-map-type: atomic
                             namespaces:
                               description: namespaces specifies a static list of namespace
                                 names that the term applies to. The term is applied
@@ -666,6 +673,7 @@ spec:
                                         The requirements are ANDed.
                                       type: object
                                   type: object
+                                  x-kubernetes-map-type: atomic
                                 namespaceSelector:
                                   description: A label query over the set of namespaces
                                     that the term applies to. The term is applied
@@ -722,6 +730,7 @@ spec:
                                         The requirements are ANDed.
                                       type: object
                                   type: object
+                                  x-kubernetes-map-type: atomic
                                 namespaces:
                                   description: namespaces specifies a static list
                                     of namespace names that the term applies to. The
@@ -820,6 +829,7 @@ spec:
                                     requirements are ANDed.
                                   type: object
                               type: object
+                              x-kubernetes-map-type: atomic
                             namespaceSelector:
                               description: A label query over the set of namespaces
                                 that the term applies to. The term is applied to the
@@ -871,6 +881,7 @@ spec:
                                     requirements are ANDed.
                                   type: object
                               type: object
+                              x-kubernetes-map-type: atomic
                             namespaces:
                               description: namespaces specifies a static list of namespace
                                 names that the term applies to. The term is applied
@@ -948,6 +959,7 @@ spec:
                               required:
                               - key
                               type: object
+                              x-kubernetes-map-type: atomic
                             fieldRef:
                               description: 'Selects a field of the pod: supports metadata.name,
                                 metadata.namespace, `metadata.labels[''<KEY>'']`,
@@ -966,6 +978,7 @@ spec:
                               required:
                               - fieldPath
                               type: object
+                              x-kubernetes-map-type: atomic
                             resourceFieldRef:
                               description: 'Selects a resource of the container: only
                                 resources limits and requests (limits.cpu, limits.memory,
@@ -990,6 +1003,7 @@ spec:
                               required:
                               - resource
                               type: object
+                              x-kubernetes-map-type: atomic
                             secretKeyRef:
                               description: Selects a key of a secret in the pod's
                                 namespace
@@ -1010,6 +1024,7 @@ spec:
                               required:
                               - key
                               type: object
+                              x-kubernetes-map-type: atomic
                           type: object
                       required:
                       - name
@@ -1171,6 +1186,7 @@ spec:
                           required:
                           - key
                           type: object
+                          x-kubernetes-map-type: atomic
                         fieldRef:
                           description: 'Selects a field of the pod: supports metadata.name,
                             metadata.namespace, `metadata.labels[''<KEY>'']`, `metadata.annotations[''<KEY>'']`,
@@ -1188,6 +1204,7 @@ spec:
                           required:
                           - fieldPath
                           type: object
+                          x-kubernetes-map-type: atomic
                         resourceFieldRef:
                           description: 'Selects a resource of the container: only
                             resources limits and requests (limits.cpu, limits.memory,
@@ -1212,6 +1229,7 @@ spec:
                           required:
                           - resource
                           type: object
+                          x-kubernetes-map-type: atomic
                         secretKeyRef:
                           description: Selects a key of a secret in the pod's namespace
                           properties:
@@ -1230,6 +1248,7 @@ spec:
                           required:
                           - key
                           type: object
+                          x-kubernetes-map-type: atomic
                       type: object
                   required:
                   - name
@@ -1795,6 +1814,7 @@ spec:
                             only "value". The requirements are ANDed.
                           type: object
                       type: object
+                      x-kubernetes-map-type: atomic
                     size:
                       anyOf:
                       - type: integer
@@ -1867,8 +1887,8 @@ spec:
                   description: "Condition contains details for one aspect of the current
                     state of this API Resource. --- This struct is intended for direct
                     use as an array at the field path .status.conditions.  For example,
-                    type FooStatus struct{ // Represents the observations of a foo's
-                    current state. // Known .status.conditions.type are: \"Available\",
+                    \n type FooStatus struct{ // Represents the observations of a
+                    foo's current state. // Known .status.conditions.type are: \"Available\",
                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
@@ -2021,8 +2041,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
-          StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdPsJv
-          License: https://ibm.biz/BdPdJa'
+          StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdPsJv License:
+          https://ibm.biz/BdPdJa'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -2142,6 +2162,7 @@ spec:
                                     type: object
                                   type: array
                               type: object
+                              x-kubernetes-map-type: atomic
                             weight:
                               description: Weight associated with matching the corresponding
                                 nodeSelectorTerm, in the range 1-100.
@@ -2242,10 +2263,12 @@ spec:
                                     type: object
                                   type: array
                               type: object
+                              x-kubernetes-map-type: atomic
                             type: array
                         required:
                         - nodeSelectorTerms
                         type: object
+                        x-kubernetes-map-type: atomic
                     type: object
                   podAffinity:
                     description: Describes pod affinity scheduling rules (e.g. co-locate
@@ -2322,6 +2345,7 @@ spec:
                                         The requirements are ANDed.
                                       type: object
                                   type: object
+                                  x-kubernetes-map-type: atomic
                                 namespaceSelector:
                                   description: A label query over the set of namespaces
                                     that the term applies to. The term is applied
@@ -2378,6 +2402,7 @@ spec:
                                         The requirements are ANDed.
                                       type: object
                                   type: object
+                                  x-kubernetes-map-type: atomic
                                 namespaces:
                                   description: namespaces specifies a static list
                                     of namespace names that the term applies to. The
@@ -2476,6 +2501,7 @@ spec:
                                     requirements are ANDed.
                                   type: object
                               type: object
+                              x-kubernetes-map-type: atomic
                             namespaceSelector:
                               description: A label query over the set of namespaces
                                 that the term applies to. The term is applied to the
@@ -2527,6 +2553,7 @@ spec:
                                     requirements are ANDed.
                                   type: object
                               type: object
+                              x-kubernetes-map-type: atomic
                             namespaces:
                               description: namespaces specifies a static list of namespace
                                 names that the term applies to. The term is applied
@@ -2627,6 +2654,7 @@ spec:
                                         The requirements are ANDed.
                                       type: object
                                   type: object
+                                  x-kubernetes-map-type: atomic
                                 namespaceSelector:
                                   description: A label query over the set of namespaces
                                     that the term applies to. The term is applied
@@ -2683,6 +2711,7 @@ spec:
                                         The requirements are ANDed.
                                       type: object
                                   type: object
+                                  x-kubernetes-map-type: atomic
                                 namespaces:
                                   description: namespaces specifies a static list
                                     of namespace names that the term applies to. The
@@ -2781,6 +2810,7 @@ spec:
                                     requirements are ANDed.
                                   type: object
                               type: object
+                              x-kubernetes-map-type: atomic
                             namespaceSelector:
                               description: A label query over the set of namespaces
                                 that the term applies to. The term is applied to the
@@ -2832,6 +2862,7 @@ spec:
                                     requirements are ANDed.
                                   type: object
                               type: object
+                              x-kubernetes-map-type: atomic
                             namespaces:
                               description: namespaces specifies a static list of namespace
                                 names that the term applies to. The term is applied
@@ -2970,6 +3001,7 @@ spec:
                           required:
                           - key
                           type: object
+                          x-kubernetes-map-type: atomic
                         fieldRef:
                           description: 'Selects a field of the pod: supports metadata.name,
                             metadata.namespace, `metadata.labels[''<KEY>'']`, `metadata.annotations[''<KEY>'']`,
@@ -2987,6 +3019,7 @@ spec:
                           required:
                           - fieldPath
                           type: object
+                          x-kubernetes-map-type: atomic
                         resourceFieldRef:
                           description: 'Selects a resource of the container: only
                             resources limits and requests (limits.cpu, limits.memory,
@@ -3011,6 +3044,7 @@ spec:
                           required:
                           - resource
                           type: object
+                          x-kubernetes-map-type: atomic
                         secretKeyRef:
                           description: Selects a key of a secret in the pod's namespace
                           properties:
@@ -3029,6 +3063,7 @@ spec:
                           required:
                           - key
                           type: object
+                          x-kubernetes-map-type: atomic
                       type: object
                   required:
                   - name
@@ -3797,6 +3832,7 @@ spec:
                             only "value". The requirements are ANDed.
                           type: object
                       type: object
+                      x-kubernetes-map-type: atomic
                     size:
                       anyOf:
                       - type: integer
@@ -3908,8 +3944,8 @@ spec:
                   description: "Condition contains details for one aspect of the current
                     state of this API Resource. --- This struct is intended for direct
                     use as an array at the field path .status.conditions.  For example,
-                    type FooStatus struct{ // Represents the observations of a foo's
-                    current state. // Known .status.conditions.type are: \"Available\",
+                    \n type FooStatus struct{ // Represents the observations of a
+                    foo's current state. // Known .status.conditions.type are: \"Available\",
                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
@@ -4080,8 +4116,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
-          StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/BdPsJ7
-          License: https://ibm.biz/BdPdJa'
+          StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/BdPsJ7 License:
+          https://ibm.biz/BdPdJa'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -4201,6 +4237,7 @@ spec:
                                     type: object
                                   type: array
                               type: object
+                              x-kubernetes-map-type: atomic
                             weight:
                               description: Weight associated with matching the corresponding
                                 nodeSelectorTerm, in the range 1-100.
@@ -4301,10 +4338,12 @@ spec:
                                     type: object
                                   type: array
                               type: object
+                              x-kubernetes-map-type: atomic
                             type: array
                         required:
                         - nodeSelectorTerms
                         type: object
+                        x-kubernetes-map-type: atomic
                     type: object
                   podAffinity:
                     description: Describes pod affinity scheduling rules (e.g. co-locate
@@ -4381,6 +4420,7 @@ spec:
                                         The requirements are ANDed.
                                       type: object
                                   type: object
+                                  x-kubernetes-map-type: atomic
                                 namespaceSelector:
                                   description: A label query over the set of namespaces
                                     that the term applies to. The term is applied
@@ -4437,6 +4477,7 @@ spec:
                                         The requirements are ANDed.
                                       type: object
                                   type: object
+                                  x-kubernetes-map-type: atomic
                                 namespaces:
                                   description: namespaces specifies a static list
                                     of namespace names that the term applies to. The
@@ -4535,6 +4576,7 @@ spec:
                                     requirements are ANDed.
                                   type: object
                               type: object
+                              x-kubernetes-map-type: atomic
                             namespaceSelector:
                               description: A label query over the set of namespaces
                                 that the term applies to. The term is applied to the
@@ -4586,6 +4628,7 @@ spec:
                                     requirements are ANDed.
                                   type: object
                               type: object
+                              x-kubernetes-map-type: atomic
                             namespaces:
                               description: namespaces specifies a static list of namespace
                                 names that the term applies to. The term is applied
@@ -4686,6 +4729,7 @@ spec:
                                         The requirements are ANDed.
                                       type: object
                                   type: object
+                                  x-kubernetes-map-type: atomic
                                 namespaceSelector:
                                   description: A label query over the set of namespaces
                                     that the term applies to. The term is applied
@@ -4742,6 +4786,7 @@ spec:
                                         The requirements are ANDed.
                                       type: object
                                   type: object
+                                  x-kubernetes-map-type: atomic
                                 namespaces:
                                   description: namespaces specifies a static list
                                     of namespace names that the term applies to. The
@@ -4840,6 +4885,7 @@ spec:
                                     requirements are ANDed.
                                   type: object
                               type: object
+                              x-kubernetes-map-type: atomic
                             namespaceSelector:
                               description: A label query over the set of namespaces
                                 that the term applies to. The term is applied to the
@@ -4891,6 +4937,7 @@ spec:
                                     requirements are ANDed.
                                   type: object
                               type: object
+                              x-kubernetes-map-type: atomic
                             namespaces:
                               description: namespaces specifies a static list of namespace
                                 names that the term applies to. The term is applied
@@ -5041,6 +5088,7 @@ spec:
                           required:
                           - key
                           type: object
+                          x-kubernetes-map-type: atomic
                         fieldRef:
                           description: 'Selects a field of the pod: supports metadata.name,
                             metadata.namespace, `metadata.labels[''<KEY>'']`, `metadata.annotations[''<KEY>'']`,
@@ -5058,6 +5106,7 @@ spec:
                           required:
                           - fieldPath
                           type: object
+                          x-kubernetes-map-type: atomic
                         resourceFieldRef:
                           description: 'Selects a resource of the container: only
                             resources limits and requests (limits.cpu, limits.memory,
@@ -5082,6 +5131,7 @@ spec:
                           required:
                           - resource
                           type: object
+                          x-kubernetes-map-type: atomic
                         secretKeyRef:
                           description: Selects a key of a secret in the pod's namespace
                           properties:
@@ -5100,6 +5150,7 @@ spec:
                           required:
                           - key
                           type: object
+                          x-kubernetes-map-type: atomic
                       type: object
                   required:
                   - name
@@ -5109,6 +5160,69 @@ spec:
                 description: List of ConfigMap names to mount containing extra executables
                 items:
                   type: string
+                type: array
+              healthCheck:
+                description: Defines the configuration for the DataPower health check
+                  service
+                properties:
+                  logLevel:
+                    description: Logging level for DataPower health check service
+                    enum:
+                    - debug
+                    - info
+                    - warn
+                    - error
+                    - dpanic
+                    - panic
+                    - fatal
+                    type: string
+                  probe:
+                    description: DataPower liveness probe configuration
+                    properties:
+                      port:
+                        description: Listener port for DataPower liveness probe
+                        format: int32
+                        maximum: 65535
+                        minimum: 1
+                        type: integer
+                    type: object
+                  watchdog:
+                    description: DataPower watchdog service configuration
+                    properties:
+                      enabled:
+                        description: Enable the DataPower watchdog service
+                        type: boolean
+                      hardTimeoutSeconds:
+                        description: Hard timeout threshold, in seconds. If DataPower
+                          is unresponsive for this long, the Pod will be restarted.
+                        minimum: 20
+                        type: integer
+                      softTimeoutSeconds:
+                        description: Soft timeout threshold, in seconds. If DataPower
+                          is unresponsive for this long, warnings will be logged.
+                        minimum: 20
+                        type: integer
+                    required:
+                    - enabled
+                    type: object
+                type: object
+              hostAliases:
+                description: HostAliases is an optional list of hosts and IPs that
+                  will be injected into DataPower's hosts file if specified. This
+                  will add static-host entries to DataPower's DNS settings.
+                items:
+                  description: HostAlias holds the mapping between IP and hostnames
+                    that will be injected as an entry in the pod's hosts file.
+                  properties:
+                    hostnames:
+                      description: Hostnames for the above IP address.
+                      items:
+                        type: string
+                      type: array
+                    ip:
+                      description: IP address of the host file entry.
+                      type: string
+                  type: object
                 type: array
               image:
                 description: Specify a specific DataPower image from a reachable repository.
@@ -5874,15 +5988,23 @@ spec:
                     description: Settings used by vertical pod auto scaler
                     properties:
                       maxAllowedCPU:
+                        anyOf:
+                        - type: integer
+                        - type: string
                         description: Maximum value for CPU resource that can be assigned
                           to a DataPower container when scaling vertically. Minimum
                           value is set from DataPowerRequestsSpec.ResourceCPU
-                        type: integer
+                        pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                        x-kubernetes-int-or-string: true
                       maxAllowedMemory:
+                        anyOf:
+                        - type: integer
+                        - type: string
                         description: Maximum value of memory that can be assigned
                           to a DataPower container when scaling vertically. Minimum
                           value is set from DataPowerRequestsSpec.ResourceMemory
-                        type: string
+                        pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                        x-kubernetes-int-or-string: true
                     type: object
                 type: object
               podManagementPolicy:
@@ -6034,6 +6156,12 @@ spec:
                     format: int32
                     type: integer
                 type: object
+              readinessTimeoutSeconds:
+                description: If the DataPower container is NotReady for this amount
+                  of time, it will be restarted
+                format: int64
+                minimum: 60
+                type: integer
               replicas:
                 default: 1
                 description: Desired number of DataPower Pods in the StatefulSet
@@ -6049,9 +6177,13 @@ spec:
                       allowed
                     properties:
                       memory:
-                        description: Memory, in bytes. (8Gi = 8GiB = 8 * 1024 * 1024
-                          * 1024)
-                        type: string
+                        anyOf:
+                        - type: integer
+                        - type: string
+                        description: Memory, in bytes (8Gi = 8GiB = 8 * 1024 * 1024
+                          * 1024). Minimum value is 2Gi. Default is 8Gi.
+                        pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                        x-kubernetes-int-or-string: true
                     type: object
                   requests:
                     description: Requests describes the minimum amount of compute
@@ -6061,14 +6193,18 @@ spec:
                         anyOf:
                         - type: integer
                         - type: string
-                        description: CPU, in cores. Minimum value is 1 CPU. Default
-                          is 1 CPU for nonproduction, 4 CPU for production.
+                        description: CPU, in cores. Minimum value is 500m (0.5 cores).
+                          Default is 1 CPU for nonproduction, 4 CPU for production.
                         pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                         x-kubernetes-int-or-string: true
                       memory:
-                        description: Memory, in bytes. (8Gi = 8GiB = 8 * 1024 * 1024
-                          * 1024)
-                        type: string
+                        anyOf:
+                        - type: integer
+                        - type: string
+                        description: Memory, in bytes (8Gi = 8GiB = 8 * 1024 * 1024
+                          * 1024). Minimum value is 2Gi. Default is 4Gi.
+                        pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                        x-kubernetes-int-or-string: true
                     type: object
                 type: object
               runAsRoot:
@@ -6141,6 +6277,7 @@ spec:
                             only "value". The requirements are ANDed.
                           type: object
                       type: object
+                      x-kubernetes-map-type: atomic
                     size:
                       anyOf:
                       - type: integer
@@ -6291,8 +6428,8 @@ spec:
                   description: "Condition contains details for one aspect of the current
                     state of this API Resource. --- This struct is intended for direct
                     use as an array at the field path .status.conditions.  For example,
-                    type FooStatus struct{ // Represents the observations of a foo's
-                    current state. // Known .status.conditions.type are: \"Available\",
+                    \n type FooStatus struct{ // Represents the observations of a
+                    foo's current state. // Known .status.conditions.type are: \"Available\",
                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"

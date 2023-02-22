@@ -26,7 +26,7 @@ spec:
         productName: "IBM DataPower Operator"
         productMetric: "FREE"
         productChargedContainers: ""
-        productVersion: 1.6.5
+        productVersion: 1.6.6
     spec:
       affinity:
         nodeAffinity:
@@ -59,6 +59,7 @@ spec:
           - "--leader-elect"
           - "--zap-encoder=json"
           - "--zap-log-level={{ .Values.operator.logLevel }}"
+          - "--zap-time-encoding=rfc3339nano"
           imagePullPolicy: {{ .Values.operator.image.pullPolicy }}
           env:
             - name: WATCH_NAMESPACE

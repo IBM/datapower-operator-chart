@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.9.2
-    datapower.ibm.com/operator-version: 1.6.6
+    datapower.ibm.com/operator-version: 1.6.7
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -3077,7 +3077,7 @@ spec:
                 type: array
               image:
                 description: Specify a specific DataPower image from a reachable repository.
-                  Entry should be a full image reference, i.e. docker.io/ibmcom/datapower:10.0.0.1.
+                  Entry should be a full image reference, i.e. icr.io/cpopen/datapower/datapower-limited:10.5.0.0.
                 minLength: 1
                 type: string
               imagePullSecrets:
@@ -5041,9 +5041,55 @@ spec:
                       minLength: 1
                       type: string
                     passphraseSecret:
-                      description: Secret containing the domain settings passphrase
-                        used to encrypt or decrypt passwords in password-alias objects
+                      description: 'DEPRECATED: This field is deprecated. Use ''.settings.passphrase''
+                        instead, in the domain spec. Secret containing the domain
+                        settings passphrase used to encrypt or decrypt passwords in
+                        password-alias objects.'
                       type: string
+                    passwordMap:
+                      description: Create password alias entries in the domain's password
+                        map
+                      items:
+                        properties:
+                          alias:
+                            description: Name for the password alias, used as a reference
+                              to the password in configuration
+                            type: string
+                          generate:
+                            description: Enable to use a unique generated password,
+                              instead of providing one. The Secret and Generate fields
+                              are mutually exclusive; only one may be provided.
+                            type: boolean
+                          secret:
+                            description: Secret containing the password literal, which
+                              will be encrypted and stored in the password map. The
+                              Secret and Generate fields are mutually exclusive; only
+                              one may be provided.
+                            type: string
+                        required:
+                        - alias
+                        type: object
+                      type: array
+                    settings:
+                      description: Settings provides an interface to the DataPower
+                        domain-settings object with an application domain
+                      properties:
+                        passphrase:
+                          description: Passphrase configuration for the domain
+                          properties:
+                            generate:
+                              description: Enable to use a unique generated passphrase,
+                                instead of the DataPower default. The Secret and Generate
+                                fields are mutually exclusive; only one may be provided.
+                              type: boolean
+                            secret:
+                              description: Secret containing the domain-settings passphrase
+                                used to encrypt or decrypt passwords in password-alias
+                                objects. The Secret and Generate fields are mutually
+                                exclusive; only one may be provided.
+                              type: string
+                          type: object
+                      type: object
                   required:
                   - name
                   type: object
@@ -6495,6 +6541,45 @@ spec:
               customImages:
                 description: True when a custom DataPower image is being used
                 type: boolean
+              generated:
+                description: Generated lists the generated Kubernetes resources associated
+                  with this DataPowerService instance.
+                items:
+                  description: GeneratedResource contains metadata for a generated
+                    resource
+                  properties:
+                    context:
+                      description: Context provides contextual metadata that explains
+                        the source of this generated resource
+                      properties:
+                        alias:
+                          description: Alias, if present, is the name of the password
+                            map alias for which this generated resource is associated
+                          type: string
+                        domain:
+                          description: Domain, if present, is the name of the DataPower
+                            application domain for which this generated resource is
+                            associated
+                          type: string
+                        path:
+                          description: Path describes the associated configuration
+                            within the DataPowerService spec for this generated resource
+                          type: string
+                      required:
+                      - path
+                      type: object
+                    kind:
+                      description: Kind of the generated resource
+                      type: string
+                    name:
+                      description: Name of the generated resource
+                      type: string
+                  required:
+                  - context
+                  - kind
+                  - name
+                  type: object
+                type: array
               labelSelector:
                 description: Label selector used by auto scaling (when enabled)
                 type: string

@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.3
-    datapower.ibm.com/operator-version: 1.8.1
+    datapower.ibm.com/operator-version: 1.9.0
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -43,7 +43,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerMustGather provides an API for the DataPower MustGather.
-          API version: v1beta1 Documentation: https://ibm.biz/BdMuxU License: https://ibm.biz/BdMD6r'
+          API version: v1beta1 Documentation: https://ibm.biz/BdSCcz License: https://ibm.biz/BdSCcf'
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -60,10 +60,60 @@ spec:
           spec:
             description: DataPowerMustGatherSpec defines the desired state of DataPowerMustGather
             properties:
+              context:
+                description: Context is a string given as the reason for a mustgather.
+                  This is mainly used by the manager to pass information to the MustGather
+                  API.
+                type: string
+              remoteStoragePolicy:
+                description: Defines the remote storage options. Data stored remotely
+                  is not affected by the MustGather's retention policy.
+                properties:
+                  deleteOnUpload:
+                    description: Automatically delete local MustGather data after
+                      successfully uploading to remote storage. Defaults to False.
+                    type: boolean
+                  s3:
+                    description: S3 Credentials and configuration.
+                    properties:
+                      accessKey:
+                        description: Name of Secret containing an S3 Bucket Access
+                          Key. Secret must be defined with data fields 'accessID'
+                          and 'secretKey'.
+                        minLength: 1
+                        type: string
+                      bucketName:
+                        description: S3 Bucket Name
+                        minLength: 1
+                        type: string
+                      disableSSL:
+                        description: Disables SSL Validation. Defaults to False.
+                        type: boolean
+                      endpoint:
+                        description: S3 Bucket Endpoint hostname.
+                        type: string
+                      forcePathStyle:
+                        description: Forces S3 to use the Path-style URL. Defaults
+                          to False. See https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html.
+                        type: boolean
+                      key:
+                        description: S3 Key, also known as the path or directory within
+                          the bucket.
+                        type: string
+                      region:
+                        description: S3 Region
+                        minLength: 1
+                        type: string
+                    required:
+                    - accessKey
+                    - bucketName
+                    - region
+                    type: object
+                type: object
               retentionPolicy:
-                description: RetentionPolicy defines the duration to retain MustGather
-                  data. After this amount of time, the data will automatically be
-                  deleted. Default is 1 day. Minimum is 5 minutes. Maximum is 30 days.
+                description: Defines the duration to retain MustGather data. After
+                  this amount of time, the data will automatically be deleted. Default
+                  is 1 day. Minimum is 5 minutes. Maximum is 30 days.
                 properties:
                   days:
                     description: Duration in days to retain data. Total duration will
@@ -94,6 +144,10 @@ spec:
                   for this instance.
                 items:
                   properties:
+                    context:
+                      description: Context provides information as to why the MustGather
+                        was triggered
+                      type: string
                     expiresAt:
                       description: ExpiresAt is the timestamp that the associated
                         file will expire at.
@@ -115,6 +169,10 @@ spec:
                   the RetentionPolicy and has been deleted.
                 items:
                   properties:
+                    context:
+                      description: Context provides information as to why the MustGather
+                        was triggered
+                      type: string
                     expiredAt:
                       description: ExpiredAt is the timestamp that the associated
                         file expired at.
@@ -131,6 +189,19 @@ spec:
                 description: Path is the directory in the datapower-operator pod which
                   contains the Available data.
                 type: string
+              uploadStatus:
+                description: Upload Status of remote upload
+                properties:
+                  complete:
+                    description: Boolean indicating if an upload was completed.
+                    type: boolean
+                  error:
+                    description: Indicates any associated errors with the remote upload.
+                    type: string
+                  uri:
+                    description: URI of the uploaded mustgather
+                    type: string
+                type: object
             type: object
         type: object
     served: true

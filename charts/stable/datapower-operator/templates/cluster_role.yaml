@@ -139,6 +139,32 @@ rules:
 - apiGroups:
   - datapower.ibm.com
   resources:
+  - datapowermustgathermanagers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowermustgathermanagers/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowermustgathermanagers/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - datapower.ibm.com
+  resources:
   - datapowermustgathers
   verbs:
   - create

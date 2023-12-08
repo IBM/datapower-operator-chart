@@ -1,0 +1,216 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.11.3
+    datapower.ibm.com/operator-version: 1.6.12
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/instance: datapower-operator
+    app.kubernetes.io/managed-by: datapower-operator
+    app.kubernetes.io/name: datapowermustgathers.datapower.ibm.com
+  name: datapowermustgathers.datapower.ibm.com
+spec:
+  group: datapower.ibm.com
+  names:
+    categories:
+    - all
+    - apic
+    - integration
+    - cp4i
+    kind: DataPowerMustGather
+    listKind: DataPowerMustGatherList
+    plural: datapowermustgathers
+    shortNames:
+    - dpmg
+    singular: datapowermustgather
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - description: Associated DataPowerService Name
+      jsonPath: .spec.serviceName
+      name: Service_Name
+      type: string
+    - description: Count of Available MustGather tarballs
+      jsonPath: .status.availableCount
+      name: Available
+      type: integer
+    - description: Count of Expired MustGather tarballs
+      jsonPath: .status.expiredCount
+      name: Expired
+      type: integer
+    name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: 'DataPowerMustGather provides an API for the DataPower MustGather.
+          API version: v1beta1 Documentation: https://ibm.biz/BdMuxU License: https://ibm.biz/BdPdJa'
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: DataPowerMustGatherSpec defines the desired state of DataPowerMustGather
+            properties:
+              context:
+                description: Context is a string given as the reason for a mustgather.
+                  This is mainly used by the manager to pass information to the MustGather
+                  API.
+                type: string
+              remoteStoragePolicy:
+                description: Defines the remote storage options. Data stored remotely
+                  is not affected by the MustGather's retention policy.
+                properties:
+                  deleteOnUpload:
+                    description: Automatically delete local MustGather data after
+                      successfully uploading to remote storage. Defaults to False.
+                    type: boolean
+                  s3:
+                    description: S3 Credentials and configuration.
+                    properties:
+                      accessKey:
+                        description: Name of Secret containing an S3 Bucket Access
+                          Key. Secret must be defined with data fields 'accessID'
+                          and 'secretKey'.
+                        minLength: 1
+                        type: string
+                      bucketName:
+                        description: S3 Bucket Name
+                        minLength: 1
+                        type: string
+                      disableSSL:
+                        description: Disables SSL Validation. Defaults to False.
+                        type: boolean
+                      endpoint:
+                        description: S3 Bucket Endpoint hostname.
+                        type: string
+                      forcePathStyle:
+                        description: Forces S3 to use the Path-style URL. Defaults
+                          to False. See https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html.
+                        type: boolean
+                      key:
+                        description: S3 Key, also known as the path or directory within
+                          the bucket.
+                        type: string
+                      region:
+                        description: S3 Region
+                        minLength: 1
+                        type: string
+                    required:
+                    - accessKey
+                    - bucketName
+                    - region
+                    type: object
+                type: object
+              retentionPolicy:
+                description: Defines the duration to retain MustGather data. After
+                  this amount of time, the data will automatically be deleted. Default
+                  is 1 day. Minimum is 5 minutes. Maximum is 30 days.
+                properties:
+                  days:
+                    description: Duration in days to retain data. Total duration will
+                      be the sum of Days, Hours, and Minutes.
+                    type: integer
+                  hours:
+                    description: Duration in hours to retain data. Total duration
+                      will be the sum of Days, Hours, and Minutes.
+                    type: integer
+                  minutes:
+                    description: Duration in minutes to retain data. Total duration
+                      will be the sum of Days, Hours, and Minutes.
+                    type: integer
+                type: object
+              serviceName:
+                description: ServiceName is the name of the DataPowerService you wish
+                  to run the mustgather against.
+                minLength: 1
+                type: string
+            required:
+            - serviceName
+            type: object
+          status:
+            description: DataPowerMustGatherStatus defines the observed state of DataPowerMustGather
+            properties:
+              available:
+                description: Available lists the MustGather data available for download
+                  for this instance.
+                items:
+                  properties:
+                    context:
+                      description: Context provides information as to why the MustGather
+                        was triggered
+                      type: string
+                    expiresAt:
+                      description: ExpiresAt is the timestamp that the associated
+                        file will expire at.
+                      type: string
+                    fileName:
+                      description: FileName is the name of the file that is available.
+                      type: string
+                  type: object
+                type: array
+              availableCount:
+                description: Count of Available MustGather tarballs.
+                type: integer
+              copyCmd:
+                description: CopyCmd is an easy copy-paste command to get the MustGather
+                  data to your host machine.
+                type: string
+              expired:
+                description: Expired lists the MustGather data which has exceeded
+                  the RetentionPolicy and has been deleted.
+                items:
+                  properties:
+                    context:
+                      description: Context provides information as to why the MustGather
+                        was triggered
+                      type: string
+                    expiredAt:
+                      description: ExpiredAt is the timestamp that the associated
+                        file expired at.
+                      type: string
+                    fileName:
+                      description: FileName is the name of the file that has expired.
+                      type: string
+                  type: object
+                type: array
+              expiredCount:
+                description: Count of Expired MustGather tarballs.
+                type: integer
+              path:
+                description: Path is the directory in the datapower-operator pod which
+                  contains the Available data.
+                type: string
+              uploadStatus:
+                description: Upload Status of remote upload
+                properties:
+                  complete:
+                    description: Boolean indicating if an upload was completed.
+                    type: boolean
+                  error:
+                    description: Indicates any associated errors with the remote upload.
+                    type: string
+                  uri:
+                    description: URI of the uploaded mustgather
+                    type: string
+                type: object
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null

@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.3
-    datapower.ibm.com/operator-version: 1.6.11
+    datapower.ibm.com/operator-version: 1.6.12
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -6671,6 +6671,42 @@ spec:
               customImages:
                 description: True when a custom DataPower image is being used
                 type: boolean
+              firmware:
+                description: Firmware provides information about the DataPower firmware
+                  running on pods in the DataPowerService
+                items:
+                  description: DataPowerFirmwareVersionStatus contains DataPower firmware
+                    version information and all pods in the DataPowerService running
+                    that firmware version.
+                  properties:
+                    info:
+                      description: Information about this version of the firmware
+                      properties:
+                        build:
+                          description: The build identifier
+                          type: string
+                        buildDate:
+                          description: The date and time that the firmware was built
+                          type: string
+                        version:
+                          description: The firmware version
+                          type: string
+                      required:
+                      - build
+                      - buildDate
+                      - version
+                      type: object
+                    pods:
+                      description: The DataPowerService pods running this version
+                        of the firmware
+                      items:
+                        type: string
+                      type: array
+                  required:
+                  - info
+                  - pods
+                  type: object
+                type: array
               generated:
                 description: Generated lists the generated Kubernetes resources associated
                   with this DataPowerService instance.

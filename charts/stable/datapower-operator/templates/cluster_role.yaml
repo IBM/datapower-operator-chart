@@ -25,6 +25,13 @@ rules:
 - apiGroups:
   - ""
   resources:
+  - pods/log
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - ""
+  resources:
   - secrets
   verbs:
   - create
@@ -125,6 +132,58 @@ rules:
   - datapower.ibm.com
   resources:
   - datapowermonitors/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowermustgathermanagers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowermustgathermanagers/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowermustgathermanagers/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowermustgathers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowermustgathers/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowermustgathers/status
   verbs:
   - get
   - patch

@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-    datapower.ibm.com/operator-version: 1.6.15
+    datapower.ibm.com/operator-version: 1.6.16
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -62,7 +62,7 @@ spec:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
           StatefulSet. API version: v1beta1 Documentation: https://ibm.biz/BdPsJS License:
-          https://ibm.biz/Bdm7rP'
+          https://ibm.biz/BdKLjq'
         properties:
           apiVersion:
             description: |-
@@ -2153,7 +2153,7 @@ spec:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
           StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdPsJv License:
-          https://ibm.biz/Bdm7rP'
+          https://ibm.biz/BdKLjq'
         properties:
           apiVersion:
             description: |-
@@ -3280,7 +3280,7 @@ spec:
                   accept:
                     description: |-
                       The license agreement must be accepted during installation of this product.
-                      To view the license for the latest DataPower version, please visit https://ibm.biz/Bdm7rP.
+                      To view the license for the latest DataPower version, please visit https://ibm.biz/BdKLjq.
                       To view the license for a specific version or custom image, docker run --rm <image> --show-license.
                     type: boolean
                   use:
@@ -4334,7 +4334,7 @@ spec:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
           StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/BdPsJ7 License:
-          https://ibm.biz/Bdm7rP'
+          https://ibm.biz/BdKLjq'
         properties:
           apiVersion:
             description: |-
@@ -5841,7 +5841,7 @@ spec:
                   accept:
                     description: |-
                       The license agreement must be accepted during installation of this product.
-                      To view the license for the latest DataPower version, please visit https://ibm.biz/Bdm7rP.
+                      To view the license for the latest DataPower version, please visit https://ibm.biz/BdKLjq.
                       To view the license for a specific version or custom image, docker run --rm <image> --show-license.
                     type: boolean
                   license:
@@ -5853,6 +5853,8 @@ spec:
                     - L-RJON-CCAT6P
                     - L-RWXP-KY7ASR
                     - L-BCRA-V899ZB
+                    - L-VULN-Y476BG
+                    - L-KWRT-WNDNQ8
                     - L-RJON-CCCPAN
                     - L-RJON-CCCP8R
                     - L-RJON-CCCP46

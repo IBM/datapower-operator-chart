@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-    datapower.ibm.com/operator-version: 1.6.15
+    datapower.ibm.com/operator-version: 1.6.16
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -50,7 +50,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerMonitor provides an API for monitoring the DataPower
-          StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdPsJm License: https://ibm.biz/Bdm7rP'
+          StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdPsJm License: https://ibm.biz/BdKLjq'
         properties:
           apiVersion:
             description: |-

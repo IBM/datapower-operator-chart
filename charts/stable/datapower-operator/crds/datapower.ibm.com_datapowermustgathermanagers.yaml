@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-    datapower.ibm.com/operator-version: 1.11.1
+    datapower.ibm.com/operator-version: 1.11.2
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -36,7 +36,7 @@ spec:
       openAPIV3Schema:
         description: 'DataPowerMustGatherManager provides an API for the DataPower
           MustGatherManager. API version: v1beta1 Documentation: https://ibm.biz/BdmPqV
-          License: https://ibm.biz/BdmfEQ'
+          License: https://ibm.biz/BdKLjV'
         properties:
           apiVersion:
             description: |-

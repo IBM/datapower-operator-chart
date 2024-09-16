@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-    datapower.ibm.com/operator-version: 1.6.16
+    datapower.ibm.com/operator-version: 1.6.17
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator

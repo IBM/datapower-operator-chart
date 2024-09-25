@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-    datapower.ibm.com/operator-version: 1.11.2
+    datapower.ibm.com/operator-version: 1.12.0
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -61,8 +61,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
-          StatefulSet. API version: v1beta1 Documentation: https://ibm.biz/BdmPqb License:
-          https://ibm.biz/BdKLjV'
+          StatefulSet. API version: v1beta1 Documentation: https://ibm.biz/BdadB2 License:
+          https://ibm.biz/BdKfcY'
         properties:
           apiVersion:
             description: |-
@@ -2152,8 +2152,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
-          StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdmPqp License:
-          https://ibm.biz/BdKLjV'
+          StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdadBz License:
+          https://ibm.biz/BdKfcY'
         properties:
           apiVersion:
             description: |-
@@ -3280,7 +3280,7 @@ spec:
                   accept:
                     description: |-
                       The license agreement must be accepted during installation of this product.
-                      To view the license for the latest DataPower version, please visit https://ibm.biz/BdKLjV.
+                      To view the license for the latest DataPower version, please visit https://ibm.biz/BdKfcY.
                       To view the license for a specific version or custom image, docker run --rm <image> --show-license.
                     type: boolean
                   use:
@@ -4333,8 +4333,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
-          StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/BdmPq8 License:
-          https://ibm.biz/BdKLjV'
+          StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/BdadBq License:
+          https://ibm.biz/BdKfcY'
         properties:
           apiVersion:
             description: |-
@@ -5552,7 +5552,7 @@ spec:
                 type: array
               image:
                 description: Specify a specific DataPower image from a reachable repository.
-                  Entry should be a full image reference, i.e. cp.icr.io/cp/datapower/datapower-prod:10.5.4.0
+                  Entry should be a full image reference, i.e. cp.icr.io/cp/datapower/datapower-prod:10.6.1.0
                 minLength: 1
                 type: string
               imagePullPolicy:
@@ -5842,16 +5842,16 @@ spec:
                   accept:
                     description: |-
                       The license agreement must be accepted during installation of this product.
-                      To view the license for the latest DataPower version, please visit https://ibm.biz/BdKLjV.
+                      To view the license for the latest DataPower version, please visit https://ibm.biz/BdKfcY.
                       To view the license for a specific version or custom image, docker run --rm <image> --show-license.
                     type: boolean
                   license:
                     description: 'Choose the license ID which matches the desired
                       DataPower firmware version and usage. For more information:
-                      https://ibm.biz/BdmPqG'
+                      https://ibm.biz/BdadBj'
                     enum:
-                    - L-EYGU-PVGRBC
-                    - L-PYHE-KX6R8F
+                    - L-TAMQ-MLEFS6
+                    - L-TQPQ-FUUQU4
                     - L-WRRP-ZHFMSQ
                     - L-SFZJ-YKNKZL
                     - L-CUZM-FVHA85
@@ -5862,8 +5862,6 @@ spec:
                     - L-ACLZ-AL4B8H
                     - L-NWQG-8KNQE4
                     - L-FTTE-H5LW3K
-                    - L-VULN-Y476BG
-                    - L-KWRT-WNDNQ8
                     - L-RWXP-KY7ASR
                     - L-BCRA-V899ZB
                     - L-RJON-CCAT5F
@@ -6442,7 +6440,7 @@ spec:
               podAutoScaling:
                 description: |-
                   Enable pod auto scaling to ensure high availability of DataPower Pods.
-                  To learn more about automatic scaling of DataPower Pods, please view https://ibm.biz/BdmPqn
+                  To learn more about automatic scaling of DataPower Pods, please view https://ibm.biz/BdadBZ
                 properties:
                   hpa:
                     description: Settings used by horizontal pod auto scaler
@@ -6919,8 +6917,8 @@ spec:
                   type: object
                 type: array
               version:
-                description: Can refer to specific version, i.e. 10.6.0.0, or a channel,
-                  i.e. 10.6-lts
+                description: Can refer to specific version, i.e. 10.6.1.0, or a channel,
+                  i.e. 10.6-cd
                 minLength: 1
                 type: string
             required:

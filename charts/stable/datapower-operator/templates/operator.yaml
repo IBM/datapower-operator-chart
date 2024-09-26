@@ -26,7 +26,7 @@ spec:
         productName: "IBM DataPower Operator"
         productMetric: "FREE"
         productChargedContainers: ""
-        productVersion: 1.12.0
+        productVersion: 1.12.1
     spec:
       affinity:
         nodeAffinity:

@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-    datapower.ibm.com/operator-version: 1.12.0
+    datapower.ibm.com/operator-version: 1.12.1
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -5852,6 +5852,8 @@ spec:
                     enum:
                     - L-TAMQ-MLEFS6
                     - L-TQPQ-FUUQU4
+                    - L-EYGU-PVGRBC
+                    - L-PYHE-KX6R8F
                     - L-WRRP-ZHFMSQ
                     - L-SFZJ-YKNKZL
                     - L-CUZM-FVHA85
@@ -5862,6 +5864,8 @@ spec:
                     - L-ACLZ-AL4B8H
                     - L-NWQG-8KNQE4
                     - L-FTTE-H5LW3K
+                    - L-VULN-Y476BG
+                    - L-KWRT-WNDNQ8
                     - L-RWXP-KY7ASR
                     - L-BCRA-V899ZB
                     - L-RJON-CCAT5F

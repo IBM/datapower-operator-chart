@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-    datapower.ibm.com/operator-version: 1.12.2
+    datapower.ibm.com/operator-version: 1.13.0
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -61,8 +61,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
-          StatefulSet. API version: v1beta1 Documentation: https://ibm.biz/BdadB2 License:
-          https://ibm.biz/BdKfcY'
+          StatefulSet. API version: v1beta1 Documentation: https://ibm.biz/BdayGV License:
+          https://ibm.biz/Bdayf6'
         properties:
           apiVersion:
             description: |-
@@ -2152,8 +2152,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
-          StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdadBz License:
-          https://ibm.biz/BdKfcY'
+          StatefulSet. API version: v1beta2 Documentation: https://ibm.biz/BdayGA License:
+          https://ibm.biz/Bdayf6'
         properties:
           apiVersion:
             description: |-
@@ -3280,7 +3280,7 @@ spec:
                   accept:
                     description: |-
                       The license agreement must be accepted during installation of this product.
-                      To view the license for the latest DataPower version, please visit https://ibm.biz/BdKfcY.
+                      To view the license for the latest DataPower version, please visit https://ibm.biz/Bdayf6.
                       To view the license for a specific version or custom image, docker run --rm <image> --show-license.
                     type: boolean
                   use:
@@ -4333,8 +4333,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
-          StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/BdadBq License:
-          https://ibm.biz/BdKfcY'
+          StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/BdayGu License:
+          https://ibm.biz/Bdayf6'
         properties:
           apiVersion:
             description: |-
@@ -5256,6 +5256,14 @@ spec:
                 - always
                 - never
                 type: string
+              cryptoMode:
+                description: |-
+                  CryptoMode sets the desired crypto mode. This can be used to enable FIPS.
+                  FIPS disables specific cryptographic algorithms and protocols to allow for more secure processing.
+                enum:
+                - permissive
+                - fips-140-3-l1
+                type: string
               debug:
                 description: Debug switch. Use this to obtain debug information from
                   DataPower pod initialization.
@@ -5842,14 +5850,16 @@ spec:
                   accept:
                     description: |-
                       The license agreement must be accepted during installation of this product.
-                      To view the license for the latest DataPower version, please visit https://ibm.biz/BdKfcY.
+                      To view the license for the latest DataPower version, please visit https://ibm.biz/Bdayf6.
                       To view the license for a specific version or custom image, docker run --rm <image> --show-license.
                     type: boolean
                   license:
                     description: 'Choose the license ID which matches the desired
                       DataPower firmware version and usage. For more information:
-                      https://ibm.biz/BdadBj'
+                      https://ibm.biz/BdayG8'
                     enum:
+                    - L-PMCK-LJS8QM
+                    - L-FFCD-YR3W9A
                     - L-TAMQ-MLEFS6
                     - L-TQPQ-FUUQU4
                     - L-EYGU-PVGRBC
@@ -6444,7 +6454,7 @@ spec:
               podAutoScaling:
                 description: |-
                   Enable pod auto scaling to ensure high availability of DataPower Pods.
-                  To learn more about automatic scaling of DataPower Pods, please view https://ibm.biz/BdadBZ
+                  To learn more about automatic scaling of DataPower Pods, please view https://ibm.biz/BdayGg
                 properties:
                   hpa:
                     description: Settings used by horizontal pod auto scaler
@@ -6512,6 +6522,17 @@ spec:
                 - Parallel
                 - OrderedReady
                 type: string
+              rbm:
+                description: RBM is an optional set of role-based management configurations.
+                properties:
+                  passwordHashAlgorithm:
+                    description: Password Hash Algorithm sets the hashing algorithm
+                      used for user passwords.
+                    enum:
+                    - md5
+                    - sha256
+                    type: string
+                type: object
               readinessProbe:
                 description: Customize the ReadinessProbe on created DataPower Pods.
                   Expected input is a full ReadinessProbe definition.
@@ -6921,7 +6942,7 @@ spec:
                   type: object
                 type: array
               version:
-                description: Can refer to specific version, i.e. 10.6.1.0, or a channel,
+                description: Can refer to specific version, i.e. 10.6.2.0, or a channel,
                   i.e. 10.6-cd
                 minLength: 1
                 type: string

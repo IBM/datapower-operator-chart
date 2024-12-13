@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-    datapower.ibm.com/operator-version: 1.12.2
+    datapower.ibm.com/operator-version: 1.13.0
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -35,8 +35,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerMustGatherManager provides an API for the DataPower
-          MustGatherManager. API version: v1beta1 Documentation: https://ibm.biz/BdadBy
-          License: https://ibm.biz/BdKfcY'
+          MustGatherManager. API version: v1beta1 Documentation: https://ibm.biz/BdayGC
+          License: https://ibm.biz/Bdayf6'
         properties:
           apiVersion:
             description: |-
@@ -63,7 +63,7 @@ spec:
                 description: |-
                   OnEvents is an array of event strings which indicate which Object & Event
                   you wish to trigger on. For example "PodEvent:Restart" would trigger on pod restarts.
-                  For a list of supported Object and Event pairs, see https://ibm.biz/BdadBy.
+                  For a list of supported Object and Event pairs, see https://ibm.biz/BdayGC.
                 items:
                   type: string
                 type: array

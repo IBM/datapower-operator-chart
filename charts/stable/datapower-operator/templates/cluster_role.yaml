@@ -12,19 +12,7 @@ rules:
   - ""
   resources:
   - namespaces
-  verbs:
-  - get
-  - list
-- apiGroups:
-  - ""
-  resources:
   - pods
-  verbs:
-  - get
-  - list
-- apiGroups:
-  - ""
-  resources:
   - pods/log
   verbs:
   - get
@@ -33,17 +21,6 @@ rules:
   - admissionregistration.k8s.io
   resources:
   - mutatingwebhookconfigurations
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - admissionregistration.k8s.io
-  resources:
   - validatingwebhookconfigurations
   verbs:
   - create
@@ -99,117 +76,10 @@ rules:
   - datapower.ibm.com
   resources:
   - datapowermonitors
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - datapower.ibm.com
-  resources:
-  - datapowermonitors/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - datapower.ibm.com
-  resources:
   - datapowermustgathermanagers
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - datapower.ibm.com
-  resources:
-  - datapowermustgathermanagers/finalizers
-  verbs:
-  - update
-- apiGroups:
-  - datapower.ibm.com
-  resources:
-  - datapowermustgathermanagers/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - datapower.ibm.com
-  resources:
   - datapowermustgathers
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - datapower.ibm.com
-  resources:
-  - datapowermustgathers/finalizers
-  verbs:
-  - update
-- apiGroups:
-  - datapower.ibm.com
-  resources:
-  - datapowermustgathers/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - datapower.ibm.com
-  resources:
   - datapowerrollouts
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - datapower.ibm.com
-  resources:
-  - datapowerrollouts/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - datapower.ibm.com
-  resources:
   - datapowerservicebindings
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - datapower.ibm.com
-  resources:
-  - datapowerservicebindings/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - datapower.ibm.com
-  resources:
   - datapowerservices
   verbs:
   - create
@@ -222,10 +92,22 @@ rules:
 - apiGroups:
   - datapower.ibm.com
   resources:
+  - datapowermonitors/status
+  - datapowermustgathermanagers/status
+  - datapowermustgathers/status
+  - datapowerrollouts/status
+  - datapowerservicebindings/status
   - datapowerservices/status
   verbs:
   - get
   - patch
+  - update
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowermustgathermanagers/finalizers
+  - datapowermustgathers/finalizers
+  verbs:
   - update
 - apiGroups:
   - operators.coreos.com

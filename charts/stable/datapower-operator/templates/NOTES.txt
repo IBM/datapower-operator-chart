@@ -9,4 +9,3 @@ To verify your install, look for:
 - Role:                             kubectl get role | grep '{{ template "datapower-operator.namespacedname" . }}'
 - Role Binding:                     kubectl get rolebinding | grep '{{ template "datapower-operator.namespacedname" . }}'
 - Service Account:                  kubectl get serviceaccount | grep 'datapower-operator'
-- Conversion Webhook:               kubectl get deployment --all-namespaces | grep 'datapower-operator-conversion-webhook'

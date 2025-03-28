@@ -30,6 +30,13 @@
   - update
   - watch
 - apiGroups:
+  - ""
+  resources:
+  - pods/log
+  verbs:
+  - get
+  - list
+- apiGroups:
   - apps
   resources:
   - daemonsets
@@ -103,6 +110,43 @@
   - patch
   - update
   - watch
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowermonitors
+  - datapowermustgathermanagers
+  - datapowermustgathers
+  - datapowerrollouts
+  - datapowerservicebindings
+  - datapowerservices
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowermonitors/status
+  - datapowermustgathermanagers/status
+  - datapowermustgathers/status
+  - datapowerrollouts/status
+  - datapowerservicebindings/status
+  - datapowerservices/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - datapower.ibm.com
+  resources:
+  - datapowermustgathermanagers/finalizers
+  - datapowermustgathers/finalizers
+  verbs:
+  - update
 - apiGroups:
   - monitoring.coreos.com
   resources:

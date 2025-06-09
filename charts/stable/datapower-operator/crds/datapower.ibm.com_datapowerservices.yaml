@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.17.3
-    datapower.ibm.com/operator-version: 1.14.1
+    datapower.ibm.com/operator-version: 1.15.0
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -50,8 +50,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
-          StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/BdGafK License:
-          https://ibm.biz/BdGP5H'
+          StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/Bdnn5A License:
+          https://ibm.biz/Bdn4Jp'
         properties:
           apiVersion:
             description: |-
@@ -1616,14 +1616,16 @@ spec:
                   accept:
                     description: |-
                       The license agreement must be accepted during installation of this product.
-                      To view the license for the latest DataPower version, please visit https://ibm.biz/BdGP5H.
+                      To view the license for the latest DataPower version, please visit https://ibm.biz/Bdn4Jp.
                       To view the license for a specific version or custom image, docker run --rm <image> --show-license.
                     type: boolean
                   license:
                     description: 'Choose the license ID which matches the desired
                       DataPower firmware version and usage. For more information:
-                      https://ibm.biz/BdGP7B'
+                      https://ibm.biz/Bdnn5K'
                     enum:
+                    - L-VRYH-429UTT
+                    - L-LFDY-XN3FWB
                     - L-MXMJ-R5NX5N
                     - L-RYXT-263TE7
                     - L-PMCK-LJS8QM
@@ -2228,7 +2230,7 @@ spec:
               podAutoScaling:
                 description: |-
                   Enable pod auto scaling to ensure high availability of DataPower Pods.
-                  To learn more about automatic scaling of DataPower Pods, please view https://ibm.biz/BdGP7x
+                  To learn more about automatic scaling of DataPower Pods, please view https://ibm.biz/Bdnn5a
                 properties:
                   hpa:
                     description: Settings used by horizontal pod auto scaler
@@ -2525,6 +2527,46 @@ spec:
               serviceAccountName:
                 description: ServiceAccountName
                 type: string
+              snmp:
+                description: SNMP is an optional set of configurations for exporting
+                  SNMP data to Prometheus
+                properties:
+                  config:
+                    description: Config defines the configuration for the DataPower
+                      SNMP object
+                    properties:
+                      port:
+                        description: Port which DataPower SNMP service will expose
+                        format: int32
+                        type: integer
+                    type: object
+                  exporter:
+                    description: Exporter defines the configuration for the Prometheus
+                      exporter
+                    properties:
+                      enabled:
+                        description: Enable the Prometheus SNMP exporter
+                        type: boolean
+                      port:
+                        description: Port which Prometheus SNMP exporter will expose
+                        format: int32
+                        type: integer
+                    required:
+                    - enabled
+                    type: object
+                  generator:
+                    description: Generator defines the configuration for the Prometheus
+                      exporter configuration generator
+                    properties:
+                      config:
+                        description: Name of ConfigMap containing generator.yaml to
+                          be used by SNMP Prometheus exporter configuration generator
+                        minLength: 1
+                        type: string
+                    required:
+                    - config
+                    type: object
+                type: object
               storage:
                 description: Storage
                 items:
@@ -2720,7 +2762,7 @@ spec:
                   type: object
                 type: array
               version:
-                description: Can refer to specific version, i.e. 10.6.3.0, or a channel,
+                description: Can refer to specific version, i.e. 10.6.4.0, or a channel,
                   i.e. 10.6-cd
                 minLength: 1
                 type: string

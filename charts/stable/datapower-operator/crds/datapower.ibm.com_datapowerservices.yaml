@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.19.0
-    datapower.ibm.com/operator-version: 1.17.0
+    datapower.ibm.com/operator-version: 1.18.0
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -50,8 +50,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: 'DataPowerService is the primary API for managing a DataPower
-          StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/BdbjC5 License:
-          https://ibm.biz/BdbjA6'
+          StatefulSet. API version: v1beta3 Documentation: https://ibm.biz/Bdb59g License:
+          https://ibm.biz/Bdb59j'
         properties:
           apiVersion:
             description: |-
@@ -1685,14 +1685,16 @@ spec:
                   accept:
                     description: |-
                       The license agreement must be accepted during installation of this product.
-                      To view the license for the latest DataPower version, please visit https://ibm.biz/BdbjA6.
+                      To view the license for the latest DataPower version, please visit https://ibm.biz/Bdb59j.
                       To view the license for a specific version or custom image, docker run --rm <image> --show-license.
                     type: boolean
                   license:
                     description: 'Choose the license ID which matches the desired
                       DataPower firmware version and usage. For more information:
-                      https://ibm.biz/BdbjCC'
+                      https://ibm.biz/Bdb592'
                     enum:
+                    - L-MBWD-G64ATA
+                    - L-PDSS-XG3B9H
                     - L-LQQV-WT4TTD
                     - L-HTVU-N56UR7
                     - L-QDDF-429Q47
@@ -2309,7 +2311,7 @@ spec:
               podAutoScaling:
                 description: |-
                   Enable pod auto scaling to ensure high availability of DataPower Pods.
-                  To learn more about automatic scaling of DataPower Pods, please view https://ibm.biz/BdbjC3
+                  To learn more about automatic scaling of DataPower Pods, please view https://ibm.biz/Bdb59f
                 properties:
                   hpa:
                     description: Settings used by horizontal pod auto scaler
@@ -2841,8 +2843,8 @@ spec:
                   type: object
                 type: array
               version:
-                description: Can refer to specific version, i.e. 10.6.6.0, or a channel,
-                  i.e. 10.6-cd
+                description: Can refer to specific version, i.e. 11.0.0.0, or a channel,
+                  i.e. 11.0-sc2
                 minLength: 1
                 type: string
             required:

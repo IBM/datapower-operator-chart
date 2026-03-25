@@ -80,7 +80,7 @@ defaultAddCapabilities: null
 groups:
 - system:authenticated
 priority: null
-readOnlyRootFilesystem: false
+readOnlyRootFilesystem: true
 requiredDropCapabilities:
 - KILL
 - MKNOD

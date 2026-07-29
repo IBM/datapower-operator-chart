@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.19.0
-    datapower.ibm.com/operator-version: 1.18.3
+    datapower.ibm.com/operator-version: 1.18.4
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -2154,9 +2154,8 @@ spec:
                   labels
                 type: object
               odTracing:
-                description: |-
-                  DEPRECATED: This field is deprecated, as the feature has been removed.
-                  OpenTracingSpec defines desired state of agent and collector containers.
+                description: 'DEPRECATED: This field is deprecated, as the feature
+                  has been removed.'
                 properties:
                   agent:
                     description: Defines probes for agent container
@@ -2390,6 +2389,12 @@ spec:
                     - sha256
                     type: string
                 type: object
+              readOnlyRootFilesystem:
+                description: |-
+                  When enabled, the DataPower containers will run with a read-only root filesystem.
+                  This requires init containers to copy necessary directories to volumes
+                  as well as additional volume mounts.
+                type: boolean
               readinessProbe:
                 description: Customize the ReadinessProbe on created DataPower Pods.
                   Expected input is a full ReadinessProbe definition.
@@ -2655,7 +2660,10 @@ spec:
                     or ephemeral type
                   properties:
                     class:
-                      description: Class specifies the storage class for the PVC
+                      description: |-
+                        Class specifies the storage class.
+                        For ephemeral type: if specified, creates a generic ephemeral volume; otherwise creates EmptyDir.
+                        For persistent type: specifies the PVC storage class.
                       type: string
                     deleteClaim:
                       description: DeleteClaim defines if the volume claim should
@@ -2730,8 +2738,7 @@ spec:
                       - persistent
                       type: string
                     volumeMode:
-                      description: VolumeMode is Filesystem for persistent type; not
-                        applicable for ephemeral type
+                      description: 'DEPRECATED: VolumeMode is always set to Filesystem.'
                       type: string
                   required:
                   - path

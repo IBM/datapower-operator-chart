@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.19.0
-    datapower.ibm.com/operator-version: 1.11.15
+    datapower.ibm.com/operator-version: 1.11.16
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: datapower-operator
@@ -1037,7 +1037,9 @@ spec:
                               description: Selects a key of a ConfigMap.
                               properties:
                                 key:
-                                  description: The key to select.
+                                  description: |-
+                                    The key to select from the ConfigMap's Data field.
+                                    Keys in the BinaryData field are not currently propagated to container env vars.
                                   type: string
                                 name:
                                   default: ""
@@ -1343,7 +1345,9 @@ spec:
                           description: Selects a key of a ConfigMap.
                           properties:
                             key:
-                              description: The key to select.
+                              description: |-
+                                The key to select from the ConfigMap's Data field.
+                                Keys in the BinaryData field are not currently propagated to container env vars.
                               type: string
                             name:
                               default: ""
@@ -1545,6 +1549,13 @@ spec:
                   grpc:
                     description: GRPC specifies a GRPC HealthCheckRequest.
                     properties:
+                      mode:
+                        description: |-
+                          mode specifies the connection mode for the gRPC health probe.
+                          Set to "TLS" to use TLS without certificate verification.
+                          Set to "Plaintext" to use a plaintext (insecure) connection explicitly.
+                          If not specified, the probe uses a plaintext (insecure) connection.
+                        type: string
                       port:
                         description: Port number of the gRPC service. Number must
                           be in the range 1 to 65535.
@@ -1602,6 +1613,11 @@ spec:
                           Number must be in the range 1 to 65535.
                           Name must be an IANA_SVC_NAME.
                         x-kubernetes-int-or-string: true
+                      protocol:
+                        description: |-
+                          Protocol selects the wire protocol for the probe connection.
+                          Nil defaults to HTTP/1.1.
+                        type: string
                       scheme:
                         description: |-
                           Scheme to use for connecting to the host.
@@ -1824,6 +1840,13 @@ spec:
                   grpc:
                     description: GRPC specifies a GRPC HealthCheckRequest.
                     properties:
+                      mode:
+                        description: |-
+                          mode specifies the connection mode for the gRPC health probe.
+                          Set to "TLS" to use TLS without certificate verification.
+                          Set to "Plaintext" to use a plaintext (insecure) connection explicitly.
+                          If not specified, the probe uses a plaintext (insecure) connection.
+                        type: string
                       port:
                         description: Port number of the gRPC service. Number must
                           be in the range 1 to 65535.
@@ -1881,6 +1904,11 @@ spec:
                           Number must be in the range 1 to 65535.
                           Name must be an IANA_SVC_NAME.
                         x-kubernetes-int-or-string: true
+                      protocol:
+                        description: |-
+                          Protocol selects the wire protocol for the probe connection.
+                          Nil defaults to HTTP/1.1.
+                        type: string
                       scheme:
                         description: |-
                           Scheme to use for connecting to the host.
@@ -3303,7 +3331,9 @@ spec:
                           description: Selects a key of a ConfigMap.
                           properties:
                             key:
-                              description: The key to select.
+                              description: |-
+                                The key to select from the ConfigMap's Data field.
+                                Keys in the BinaryData field are not currently propagated to container env vars.
                               type: string
                             name:
                               default: ""
@@ -3547,6 +3577,11 @@ spec:
                               Number must be in the range 1 to 65535.
                               Name must be an IANA_SVC_NAME.
                             x-kubernetes-int-or-string: true
+                          protocol:
+                            description: |-
+                              Protocol selects the wire protocol for the probe connection.
+                              Nil defaults to HTTP/1.1.
+                            type: string
                           scheme:
                             description: |-
                               Scheme to use for connecting to the host.
@@ -3657,6 +3692,11 @@ spec:
                               Number must be in the range 1 to 65535.
                               Name must be an IANA_SVC_NAME.
                             x-kubernetes-int-or-string: true
+                          protocol:
+                            description: |-
+                              Protocol selects the wire protocol for the probe connection.
+                              Nil defaults to HTTP/1.1.
+                            type: string
                           scheme:
                             description: |-
                               Scheme to use for connecting to the host.
@@ -3734,6 +3774,13 @@ spec:
                   grpc:
                     description: GRPC specifies a GRPC HealthCheckRequest.
                     properties:
+                      mode:
+                        description: |-
+                          mode specifies the connection mode for the gRPC health probe.
+                          Set to "TLS" to use TLS without certificate verification.
+                          Set to "Plaintext" to use a plaintext (insecure) connection explicitly.
+                          If not specified, the probe uses a plaintext (insecure) connection.
+                        type: string
                       port:
                         description: Port number of the gRPC service. Number must
                           be in the range 1 to 65535.
@@ -3791,6 +3838,11 @@ spec:
                           Number must be in the range 1 to 65535.
                           Name must be an IANA_SVC_NAME.
                         x-kubernetes-int-or-string: true
+                      protocol:
+                        description: |-
+                          Protocol selects the wire protocol for the probe connection.
+                          Nil defaults to HTTP/1.1.
+                        type: string
                       scheme:
                         description: |-
                           Scheme to use for connecting to the host.
@@ -4020,6 +4072,13 @@ spec:
                   grpc:
                     description: GRPC specifies a GRPC HealthCheckRequest.
                     properties:
+                      mode:
+                        description: |-
+                          mode specifies the connection mode for the gRPC health probe.
+                          Set to "TLS" to use TLS without certificate verification.
+                          Set to "Plaintext" to use a plaintext (insecure) connection explicitly.
+                          If not specified, the probe uses a plaintext (insecure) connection.
+                        type: string
                       port:
                         description: Port number of the gRPC service. Number must
                           be in the range 1 to 65535.
@@ -4077,6 +4136,11 @@ spec:
                           Number must be in the range 1 to 65535.
                           Name must be an IANA_SVC_NAME.
                         x-kubernetes-int-or-string: true
+                      protocol:
+                        description: |-
+                          Protocol selects the wire protocol for the probe connection.
+                          Nil defaults to HTTP/1.1.
+                        type: string
                       scheme:
                         description: |-
                           Scheme to use for connecting to the host.
@@ -5613,7 +5677,9 @@ spec:
                           description: Selects a key of a ConfigMap.
                           properties:
                             key:
-                              description: The key to select.
+                              description: |-
+                                The key to select from the ConfigMap's Data field.
+                                Keys in the BinaryData field are not currently propagated to container env vars.
                               type: string
                             name:
                               default: ""
@@ -5938,7 +6004,9 @@ spec:
                               description: Selects a key of a ConfigMap.
                               properties:
                                 key:
-                                  description: The key to select.
+                                  description: |-
+                                    The key to select from the ConfigMap's Data field.
+                                    Keys in the BinaryData field are not currently propagated to container env vars.
                                   type: string
                                 name:
                                   default: ""
@@ -6284,6 +6352,11 @@ spec:
                               Number must be in the range 1 to 65535.
                               Name must be an IANA_SVC_NAME.
                             x-kubernetes-int-or-string: true
+                          protocol:
+                            description: |-
+                              Protocol selects the wire protocol for the probe connection.
+                              Nil defaults to HTTP/1.1.
+                            type: string
                           scheme:
                             description: |-
                               Scheme to use for connecting to the host.
@@ -6394,6 +6467,11 @@ spec:
                               Number must be in the range 1 to 65535.
                               Name must be an IANA_SVC_NAME.
                             x-kubernetes-int-or-string: true
+                          protocol:
+                            description: |-
+                              Protocol selects the wire protocol for the probe connection.
+                              Nil defaults to HTTP/1.1.
+                            type: string
                           scheme:
                             description: |-
                               Scheme to use for connecting to the host.
@@ -6471,6 +6549,13 @@ spec:
                   grpc:
                     description: GRPC specifies a GRPC HealthCheckRequest.
                     properties:
+                      mode:
+                        description: |-
+                          mode specifies the connection mode for the gRPC health probe.
+                          Set to "TLS" to use TLS without certificate verification.
+                          Set to "Plaintext" to use a plaintext (insecure) connection explicitly.
+                          If not specified, the probe uses a plaintext (insecure) connection.
+                        type: string
                       port:
                         description: Port number of the gRPC service. Number must
                           be in the range 1 to 65535.
@@ -6528,6 +6613,11 @@ spec:
                           Number must be in the range 1 to 65535.
                           Name must be an IANA_SVC_NAME.
                         x-kubernetes-int-or-string: true
+                      protocol:
+                        description: |-
+                          Protocol selects the wire protocol for the probe connection.
+                          Nil defaults to HTTP/1.1.
+                        type: string
                       scheme:
                         description: |-
                           Scheme to use for connecting to the host.
@@ -6855,6 +6945,13 @@ spec:
                   grpc:
                     description: GRPC specifies a GRPC HealthCheckRequest.
                     properties:
+                      mode:
+                        description: |-
+                          mode specifies the connection mode for the gRPC health probe.
+                          Set to "TLS" to use TLS without certificate verification.
+                          Set to "Plaintext" to use a plaintext (insecure) connection explicitly.
+                          If not specified, the probe uses a plaintext (insecure) connection.
+                        type: string
                       port:
                         description: Port number of the gRPC service. Number must
                           be in the range 1 to 65535.
@@ -6912,6 +7009,11 @@ spec:
                           Number must be in the range 1 to 65535.
                           Name must be an IANA_SVC_NAME.
                         x-kubernetes-int-or-string: true
+                      protocol:
+                        description: |-
+                          Protocol selects the wire protocol for the probe connection.
+                          Nil defaults to HTTP/1.1.
+                        type: string
                       scheme:
                         description: |-
                           Scheme to use for connecting to the host.
